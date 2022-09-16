@@ -5,6 +5,7 @@
     "moduleResolution": "Node",
     "module": "ES2020",
     "noImplicitAny": false,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "sourceMap": false,

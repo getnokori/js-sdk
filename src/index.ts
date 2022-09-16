@@ -1,13 +1,8 @@
 'strict'
+import 'dotenv/config'
 
-// LolaDB.PACKAGE_VERSION = require('../package.json').version
-import LolaDB from './classes/loladb.class'
+import lolaDB from './classes/loladb.class'
 
-const exports = {
-  LolaDB,
-}
-module.exports = exports
+export const LolaDB = lolaDB
 
-// Allow use with the TypeScript compiler without `esModuleInterop`.
-// We may also want to add `Object.defineProperty(exports, "__esModule", {value: true});` in the future, so that Babel users will use the `default` version.
-module.exports.default = exports
+export default LolaDB

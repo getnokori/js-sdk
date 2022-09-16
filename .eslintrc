@@ -134,7 +134,7 @@
       }
     }],
     // best-practice
-    "no-console": ["error"],
+    "no-console": ["off"],
     "array-callback-return": "error",
     "block-scoped-var": "error",
     "consistent-return": "off",
