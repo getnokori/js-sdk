@@ -18,6 +18,15 @@ class AuthHTTP {
     return result
   }
 
+  public async verifyUser(args: any) {
+    const result = await this.httpService.get(`${this.resource}/verify/${args.verifyToken}`)
+    if(result.status === 'error'){
+      console.error(result)
+      return null
+    }
+    return result
+  }
+
   public async changePassword({ oldPassword, newPassword }) {
     return this.httpService.put(`${this.resource}/password-change`, {
       oldPassword,

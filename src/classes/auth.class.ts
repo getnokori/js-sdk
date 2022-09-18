@@ -17,6 +17,15 @@ class Auth{
 
     return null
   }
+
+  public async verifyUser(args: any){
+    console.log('verifyUser', this._apiToken)
+    const verifyResponse = await this.http.verifyUser(args)
+    if(verifyResponse)
+      return verifyResponse
+
+    return null
+  }
 }
 
 export default Auth

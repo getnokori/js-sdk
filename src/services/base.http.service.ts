@@ -1,4 +1,5 @@
 import axios from 'axios'
+import HTTPHeaders from '../enums/httpHeaders.enum'
 
 const baseURL = `${process.env.APP_API_URL}/v1`
 
@@ -10,13 +11,15 @@ const Repository = axios.create({
   },
 })
 
-const init = (apiToken: string) => {
+const init = (apiToken: string, jwt: string | null = null ) => {
   try {
     Repository.interceptors.request.use(
       async (config) => {
         if(!config || !config.headers) throw new Error('No token provided')
         try {
-          config.headers.Authorization = apiToken
+          config.headers[HTTPHeaders.LOLADB_API_KEY] = apiToken
+          if(jwt) config.headers.Authorization = jwt
+          
         }
         catch (error) {
           console.error('Error adding token to auth headers', error)
@@ -44,6 +47,7 @@ const init = (apiToken: string) => {
     
       async (error) => {
         if (axios.isAxiosError(error)) {
+          console.log(error)
           console.log('error message: ', error.message)
           Promise.reject(error)
         }

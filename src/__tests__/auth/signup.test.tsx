@@ -6,7 +6,7 @@ describe('loladb Auth', () => {
   it('should be able to signup', async () => {
     const int = Math.floor(Math.random() * 10000)
     const auth = await loladb.auth.signup({
-      email: `test-user${int}@loladb.com`, 
+      email: `wes+${int}@loladb.com`, 
       password: '9j4f19j3d3d9j3d9', 
       firstName: 'John', 
       lastName: 'Wallaby',
