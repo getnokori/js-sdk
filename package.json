@@ -1,6 +1,6 @@
 {
   "name": "@loladb/sdk-js",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "LolaDB Node.JS js/ts sdk",
   "type": "module",
   "files": [
@@ -12,6 +12,7 @@
     "lint": "eslint . --ext .ts",
     "release": "npm run build-ts && bumpp -x \"npm run changelog\" --all --commit --tag --push && npm publish",
     "clean": "rimraf dist",
+    "build": "npm run clean && npm run build-ts",
     "dev": "npm run clean && unbuild --stub",
     "tests": "jest --ci --verbose ./src/__tests__/**/*.tsx --forceExit",
     "test": "jest"

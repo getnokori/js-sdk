@@ -12,7 +12,8 @@
     "strict" :true,
     "removeComments": true,
     "outDir": "dist/",
-    "baseUrl": "./",
+    "rootDir": "src",
+    "baseUrl": ".",
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
@@ -20,6 +21,6 @@
     },
     "typeRoots": ["node_modules/@types", "src/types"]
   },
-  "include": ["src/**/*.ts", "tsconfig.json"],
+  "include": ["src/**/*.ts"],
   "exclude" : ["dist", "node_modules", "src/__tests__"]
 }

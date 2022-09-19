@@ -1,3 +1,8 @@
+## <small>1.0.5 (2022-09-19)</small>
+
+
+
+
 ## <small>1.0.4 (2022-09-19)</small>
 
 * feat: pass reset req and change ([b7f8436](https://github.com/loladb/sdk-js/commit/b7f8436))
