@@ -1,3 +1,10 @@
+## <small>1.0.3 (2022-09-19)</small>
+
+* feat: adds login via password ([cf619b2](https://github.com/loladb/sdk-js/commit/cf619b2))
+* fix: adds changelog ([9ebe990](https://github.com/loladb/sdk-js/commit/9ebe990))
+
+
+
 ## <small>1.0.2 (2022-09-18)</small>
 
 * feat: adds user signup ([bbeb0ec](https://github.com/loladb/sdk-js/commit/bbeb0ec))
