@@ -32,6 +32,22 @@ class Auth{
 
     return null
   }
+
+  public async requestPasswordReset(args: any){
+    const requestPasswordResetResponse = await this.http.requestPasswordReset(args)
+    if(requestPasswordResetResponse)
+      return requestPasswordResetResponse
+
+    return null
+  }
+
+  public async resetPassword(args: any){
+    const resetPasswordResponse = await this.http.resetPassword(args)
+    if(resetPasswordResponse)
+      return resetPasswordResponse
+
+    return null
+  }
 }
 
 export default Auth

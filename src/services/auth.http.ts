@@ -36,6 +36,24 @@ class AuthHTTP {
     return result
   }
 
+  public async requestPasswordReset(args: any) {
+    const result = await this.httpService.post(`${this.resource}/password-reset-request`, args)
+    if(result.status === 'error'){
+      console.error(result)
+      return null
+    }
+    return result
+  }
+
+  public async resetPassword(args: any) {
+    const result = await this.httpService.post(`${this.resource}/password-reset`, args)
+    if(result.status === 'error'){
+      console.error(result)
+      return null
+    }
+    return result
+  }
+
   public async changePassword({ oldPassword, newPassword }) {
     return this.httpService.put(`${this.resource}/password-change`, {
       oldPassword,
