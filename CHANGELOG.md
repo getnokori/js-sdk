@@ -1,3 +1,9 @@
+## <small>1.0.6 (2022-09-19)</small>
+
+* chore: release v1.0.5 ([2d9a33d](https://github.com/loladb/sdk-js/commit/2d9a33d))
+
+
+
 ## <small>1.0.5 (2022-09-19)</small>
 
 
