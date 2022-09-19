@@ -10,9 +10,9 @@
     "build-ts": "tsc -p ./tsconfig.json",
     "changelog": "conventional-changelog -p node -i CHANGELOG.md -s",
     "lint": "eslint . --ext .ts",
-    "release": "npm run build-ts && bumpp -x \"npm run changelog\" --all --commit --tag --push && npm publish",
+    "release": "npm run build && bumpp -x \"npm run changelog\" --all --commit --tag --push && npm publish",
     "clean": "rimraf dist",
-    "build": "npm run clean && npm run build-ts",
+    "build": "npm run clean && npx unbuild",
     "dev": "npm run clean && unbuild --stub",
     "tests": "jest --ci --verbose ./src/__tests__/**/*.tsx --forceExit",
     "test": "jest"
