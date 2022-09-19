@@ -10,7 +10,6 @@ class Auth{
   }
 
   public async signup(args: any) {
-    console.log('signup', this._apiToken)
     const signupResponse = await this.http.signup(args)
     if(signupResponse)
       return signupResponse
@@ -19,10 +18,17 @@ class Auth{
   }
 
   public async verifyUser(args: any){
-    console.log('verifyUser', this._apiToken)
     const verifyResponse = await this.http.verifyUser(args)
     if(verifyResponse)
       return verifyResponse
+
+    return null
+  }
+
+  public async login(args: any){
+    const loginResponse = await this.http.login(args)
+    if(loginResponse)
+      return loginResponse
 
     return null
   }
