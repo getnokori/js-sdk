@@ -1,3 +1,8 @@
+## <small>1.0.8 (2022-09-20)</small>
+
+
+
+
 ## <small>1.0.7 (2022-09-20)</small>
 
 * fix: build file ([b364ad2](https://github.com/loladb/sdk-js/commit/b364ad2))
