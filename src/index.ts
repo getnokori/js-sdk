@@ -1,5 +1,4 @@
 'strict'
-import 'dotenv/config'
 
 import lolaDB from './classes/loladb.class'
 
