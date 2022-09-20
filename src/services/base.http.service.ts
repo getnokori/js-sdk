@@ -1,7 +1,7 @@
 import axios from 'axios'
 import HTTPHeaders from '../enums/httpHeaders.enum'
 
-const baseURL = `${process.env.APP_API_URL}/v1`
+const baseURL = 'http://127.0.0.1:4777/v1'
 
 const Repository = axios.create({
   baseURL,
