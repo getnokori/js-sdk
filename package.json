@@ -1,6 +1,6 @@
 {
   "name": "@loladb/sdk-js",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "LolaDB Node.JS js/ts sdk",
   "type": "module",
   "files": [
@@ -10,7 +10,7 @@
     "build-ts": "tsc -p ./tsconfig.json",
     "changelog": "conventional-changelog -p node -i CHANGELOG.md -s",
     "lint": "eslint . --ext .ts",
-    "release": "npm run build && bumpp -x \"npm run changelog\" --all --commit --tag --push && npm run publish",
+    "release": "npm run build && bumpp -x \"npm run changelog\" --all --commit --tag --push && npm publish",
     "publish": "npm publish",
     "prepublishOnly": "npm run build",
     "clean": "rimraf dist",
