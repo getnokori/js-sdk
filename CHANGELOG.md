@@ -1,3 +1,10 @@
+## <small>1.0.7 (2022-09-20)</small>
+
+* fix: build file ([b364ad2](https://github.com/loladb/sdk-js/commit/b364ad2))
+* fix: remove .vscode ([8f0e5a7](https://github.com/loladb/sdk-js/commit/8f0e5a7))
+
+
+
 ## <small>1.0.6 (2022-09-19)</small>
 
 * chore: release v1.0.5 ([2d9a33d](https://github.com/loladb/sdk-js/commit/2d9a33d))
