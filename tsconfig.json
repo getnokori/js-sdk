@@ -7,7 +7,7 @@
     "noImplicitAny": false,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
+    // "emitDecoratorMetadata": true,
     "sourceMap": false,
     "strict" :true,
     "removeComments": true,
