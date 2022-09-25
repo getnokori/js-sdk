@@ -1,3 +1,10 @@
+## <small>1.0.13 (2022-09-25)</small>
+
+* fix: cleanup ([c2059e2](https://github.com/loladb/sdk-js/commit/c2059e2))
+* feat: adds get billing plans ([c35ac81](https://github.com/loladb/sdk-js/commit/c35ac81))
+
+
+
 ## <small>1.0.12 (2022-09-20)</small>
 
 
