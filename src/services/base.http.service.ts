@@ -60,7 +60,7 @@ const init = (apiToken: string, jwt: string | null = null ) => {
     
   }
   catch (error: any) {
-    console.log('Error initializing http service', error.message)
+    console.log(error)
   }
 
   return Repository

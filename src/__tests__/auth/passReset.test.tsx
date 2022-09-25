@@ -5,8 +5,8 @@ const loladb = new LolaDB('lola_pk_prod_YDzGnSnlLt2xnrnXedJ3hjXOWbWzjQAcbtOc')
 describe('loladb Auth', () => {
   it('should create a password reset request', async () => {
     const resetPasswordResponse = await loladb.auth.resetPassword({
-      token: 'HXy2escHpycZ27t8rz7sSRSTHY',
-      newPassword: 'f9f93n33f9j3f9j',
+      token: 'gcjFEu-j8U0j34i1UGb8Oqbzln',
+      newPassword: 'af3agg5532323f3',
     })
 
     expect(resetPasswordResponse).toBeTruthy()
@@ -17,8 +17,8 @@ describe('loladb Auth', () => {
   it('should log a user in successfully with the new password', async () => {
     const loginResponse = await loladb.auth.login({
       authProvider: 'password',
-      email: 'wes+6359@loladb.com',
-      password: 'f9f93n33f9j3f9j',
+      email: 'wes+4539@loladb.com',
+      password: 'af3agg5532323f3',
     })
 
     expect(loginResponse).toBeTruthy()

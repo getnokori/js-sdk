@@ -1,12 +1,10 @@
 import AuthHTTP from '../services/auth.http'
 
 class Auth{
-  private _apiToken: string
   private http
 
-  constructor (apiToken) {
-    this._apiToken = apiToken
-    this.http = new AuthHTTP(this._apiToken)
+  constructor (HTTPService) {
+    this.http = new AuthHTTP(HTTPService)
   }
 
   public async signup(args: any) {

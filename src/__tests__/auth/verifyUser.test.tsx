@@ -5,7 +5,7 @@ const loladb = new LolaDB('lola_pk_prod_YDzGnSnlLt2xnrnXedJ3hjXOWbWzjQAcbtOc')
 describe('loladb Auth', () => {
   it('should validate user account with token', async () => {
     const verificationResponse = await loladb.auth.verifyUser({
-      verifyToken: 'iUtBqsKoVuv7I-9c2zimuC7OU7',
+      verifyToken: '2knKDXjug1W2x3oRzJZ0kACWa9',
     })
 
     expect(verificationResponse).toBeTruthy()

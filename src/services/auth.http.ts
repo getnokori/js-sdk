@@ -1,12 +1,10 @@
-import BaseService from './base.http.service'
 
 class AuthHTTP {
-  private _apiToken: string
   private resource = '/auth'
   private httpService 
-  constructor (apiToken: string) {
-    this._apiToken = apiToken
-    this.httpService = BaseService(this._apiToken)
+
+  constructor (HTTPService) {
+    this.httpService = HTTPService
   }
 
   public async signup(args: any) {

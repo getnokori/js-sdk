@@ -6,8 +6,8 @@ describe('loladb Auth', () => {
   it('should log a user in successfully', async () => {
     const loginResponse = await loladb.auth.login({
       authProvider: 'password',
-      email: 'wes+6359@loladb.com',
-      password: '9j4f19j3d3d9j3d9',
+      email: 'wes+4539@loladb.com',
+      password: 'af3agg5532323f3',
     })
     console.log(loginResponse)
     expect(loginResponse).toBeTruthy()
