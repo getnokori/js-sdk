@@ -11,56 +11,47 @@ const Repository = axios.create({
 })
 
 const init = (apiToken: string, jwt: string | null = null ) => {
-  try {
-    Repository.interceptors.request.use(
-      async (config) => {
-        if(!config || !config.headers) throw new Error('No token provided')
-        try {
-          config.headers[HTTPHeaders.LOLADB_API_KEY] = apiToken
-          if(jwt) config.headers.Authorization = jwt
+  Repository.interceptors.request.use(
+    async (config) => {
+      if(!config || !config.headers) throw new Error('No token provided')
+      try {
+        config.headers[HTTPHeaders.LOLADB_API_KEY] = apiToken
+        if(jwt) config.headers.Authorization = jwt
           
-        }
-        catch (error) {
-          console.error('Error adding token to auth headers', error)
-        }
+      }
+      catch (error) {
+        console.error('Error adding token to auth headers', error)
+      }
     
-        return config
-      },
+      return config
+    },
     
-      async (error) => {
-        if (axios.isAxiosError(error)) {
-          console.log('error message: ', error.message)
-          return Promise.reject(error)
-        }
-        else {
-          console.log('unexpected error: ', error)
-          return Promise.reject('An unexpected error occurred')
-        }
-      },
-    )
+    async (error) => {
+      if (axios.isAxiosError(error)) {
+        console.log('error message: ', error.message)
+        return Promise.reject(error)
+      }
+      else {
+        console.log('unexpected error: ', error)
+        return Promise.reject('An unexpected error occurred')
+      }
+    },
+  )
     
-    Repository.interceptors.response.use(
-      (response) => {
-        return response.data
-      },
+  Repository.interceptors.response.use(
+    (response) => {
+      return response.data
+    },
     
-      async (error) => {
-        if (axios.isAxiosError(error)) {
-          console.log(error)
-          console.log('error message: ', error.message)
-          Promise.reject(error)
-        }
-        else{
-          console.log('unexpected error: ', error)
-          Promise.reject(error.response.data)
-        }
-      },
-    )
-    
-  }
-  catch (error: any) {
-    console.log(error)
-  }
+    async (error) => {
+      if (axios.isAxiosError(error)) 
+        return Promise.reject(error)
+      
+      else
+        return Promise.reject(error.response.data)
+      
+    },
+  )
 
   return Repository
 }

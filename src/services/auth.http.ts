@@ -8,55 +8,87 @@ class AuthHTTP {
   }
 
   public async signup(args: any) {
-    const result = await this.httpService.post(`${this.resource}/signup`, args)
-    if(result.status === 'error'){
-      console.error(result)
-      return null
+    try {
+      const result = await this.httpService.post(`${this.resource}/signup`, args)
+      if(result.status === 'error'){
+        console.error(result)
+        return null
+      }
+      return result
     }
-    return result
+    catch (error: any) {
+      return error.response.data
+    }
   }
 
   public async verifyUser(args: any) {
-    const result = await this.httpService.get(`${this.resource}/verify/${args.verifyToken}`)
-    if(result.status === 'error'){
-      console.error(result)
-      return null
+    try {
+      const result = await this.httpService.get(`${this.resource}/verify/${args.verifyToken}`)
+      if(result.status === 'error'){
+        console.error(result)
+        return null
+      }
+      return result
     }
-    return result
+    catch (error: any) {
+      return error.response.data
+    }
   }
 
   public async login(args: any) {
-    const result = await this.httpService.post(`${this.resource}/login`, args)
-    if(result.status === 'error'){
-      console.error(result)
-      return null
+    try{
+      const result = await this.httpService.post(`${this.resource}/login`, args)
+      if(result.status === 'error'){
+        console.error(result)
+        return null
+      }
+      return result
     }
-    return result
+    catch (error: any) {
+      return error.response.data
+    }
+
   }
 
   public async requestPasswordReset(args: any) {
-    const result = await this.httpService.post(`${this.resource}/password-reset-request`, args)
-    if(result.status === 'error'){
-      console.error(result)
-      return null
+
+    try{
+      const result = await this.httpService.post(`${this.resource}/password-reset-request`, args)
+      if(result.status === 'error'){
+        console.error(result)
+        return null
+      }
+      return result
     }
-    return result
+    catch (error: any) {
+      return error.response.data
+    }
   }
 
   public async resetPassword(args: any) {
-    const result = await this.httpService.post(`${this.resource}/password-reset`, args)
-    if(result.status === 'error'){
-      console.error(result)
-      return null
+    try{
+      const result = await this.httpService.post(`${this.resource}/password-reset`, args)
+      if(result.status === 'error'){
+        console.error(result)
+        return null
+      }
+      return result
     }
-    return result
+    catch (error: any) {
+      return error.response.data
+    }
   }
 
   public async changePassword({ oldPassword, newPassword }) {
-    return this.httpService.put(`${this.resource}/password-change`, {
-      oldPassword,
-      newPassword,
-    })
+    try{
+      return this.httpService.put(`${this.resource}/password-change`, {
+        oldPassword,
+        newPassword,
+      })
+    }
+    catch (error: any) {
+      return error.response.data
+    }
   }
 }
 
