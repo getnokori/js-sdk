@@ -5,7 +5,6 @@ const baseURL = 'http://127.0.0.1:4777/v1'
 
 const Repository = axios.create({
   baseURL,
-  withCredentials: true,
   headers: {
     'Cache-Control': 'no-store',
   },

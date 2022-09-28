@@ -1,3 +1,8 @@
+## <small>1.0.14 (2022-09-28)</small>
+
+
+
+
 ## <small>1.0.13 (2022-09-25)</small>
 
 * fix: cleanup ([c2059e2](https://github.com/loladb/sdk-js/commit/c2059e2))
