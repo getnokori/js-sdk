@@ -6,4 +6,6 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   modulePathIgnorePatterns: ['dist', '/node_modules/'],
   coverageProvider: 'v8',
+  resetMocks: false,
+  setupFiles: ['jest-localstorage-mock'],
 }

@@ -51,7 +51,6 @@ class AuthHTTP {
   }
 
   public async requestPasswordReset(args: any) {
-
     try{
       const result = await this.httpService.post(`${this.resource}/password-reset-request`, args)
       if(result.status === 'error'){
@@ -85,6 +84,21 @@ class AuthHTTP {
         oldPassword,
         newPassword,
       })
+    }
+    catch (error: any) {
+      return error.response.data
+    }
+  }
+
+  // TODO Implement /user in api-core
+  public async getUser(userId: string){
+    try{
+      const result = await this.httpService.get(`${this.resource}/users/${userId}`)
+      if(result.status === 'error'){
+        console.error(result)
+        return null
+      }
+      return result
     }
     catch (error: any) {
       return error.response.data
