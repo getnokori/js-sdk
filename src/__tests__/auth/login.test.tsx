@@ -10,6 +10,8 @@ describe('loladb Auth', () => {
       password: 'af3agg5532323f3',
     })
 
+    console.log(loginResponse)
+
     expect(loginResponse).toBeTruthy()
     expect(loginResponse.status).toBe('success')
     expect(loginResponse.statusCode).toBe(200)

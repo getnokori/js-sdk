@@ -47,6 +47,20 @@ class AuthHTTP {
     catch (error: any) {
       return error.response.data
     }
+  }
+
+  public async logout(token: string) {
+    try{
+      const result = await this.httpService.get(`${this.resource}/logout?token=${token}`)
+      if(result.status === 'error'){
+        console.error(result)
+        return null
+      }
+      return result
+    }
+    catch (error: any) {
+      return error.response.data
+    }
 
   }
 
@@ -94,6 +108,20 @@ class AuthHTTP {
   public async getUser(userId: string){
     try{
       const result = await this.httpService.get(`${this.resource}/users/${userId}`)
+      if(result.status === 'error'){
+        console.error(result)
+        return null
+      }
+      return result
+    }
+    catch (error: any) {
+      return error.response.data
+    }
+  }
+
+  public async refreshSession(token: string) {
+    try{
+      const result = await this.httpService.get(`${this.resource}/refresh?token=${token}`)
       if(result.status === 'error'){
         console.error(result)
         return null

@@ -15,7 +15,7 @@ export class LolaDB {
     this._apiToken = apiToken
     this.HTTPService = HTTPService(this._apiToken)
 
-    this.auth = new Auth(this.HTTPService)
+    this.auth = new Auth(this.HTTPService, { autoRefreshSession: true })
     // this.billing = new Billing(this.HTTPService)
   }
 }

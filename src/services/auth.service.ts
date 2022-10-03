@@ -1,8 +1,13 @@
-import type { Session, Subscription } from '../types/index.d'
-import AuthEvents from '@/enums/authEvents.enum'
+import AuthEvents from '@/enums/auth/authEvents.enum'
 import { uuid } from '@/services/id.util.service'
-import SessionStrategies from '@/enums/authStrategies.enum'
+import SessionStrategies from '@/enums/auth/authStrategies.enum'
 import AuthHTTP from '@/services/authHttp.service'
+import NetworkFailure from '@/enums/auth/network.enum'
+import type Session from '@/types/session.d'
+import type Subscription from '@/types/subscription.d'
+import StorageService from '@/services/storage.service'
+import StorageEnums from '@/enums/storage/storage.enum'
+import SessionTimes from '@/enums/auth/times.enum'
 
 /**
  * End of day notes: 
@@ -21,11 +26,18 @@ class AuthService {
   protected api: AuthHTTP
   protected user: any = null // TODO: Define a :User type for this
   protected refreshTimer?: ReturnType<typeof setTimeout>
+  protected persistSession: boolean = true
+  protected networkRetries = 0
+  protected refreshToken = ''
+  protected storage = new StorageService()
+  protected autoRefreshSession = false
 
   constructor(HTTPService, settings: any) {
     this.api = new AuthHTTP(HTTPService)
 
-    this._handleAuthEvents()
+    this.autoRefreshSession = settings.autoRefreshSession || 1
+    this._recoverSession()
+    this._recoverAndRefresh()
   }
 
   public async signup(args: any) {
@@ -46,10 +58,23 @@ class AuthService {
 
   public async login(args: any){
     const loginResponse = await this.api.login(args)
+    console.log(loginResponse)
+    process.exit()
     if(loginResponse)
       return loginResponse
 
     return null
+  }
+
+  public async logout(): Promise<boolean> {
+    if (!this.currentSession) return false
+    if(!this.currentSession.sessionKey) return true
+
+    await this.api.logout(this.currentSession.sessionKey)
+    await this._removeSession()
+    this._publish(AuthEvents.LOGGED_OUT)
+
+    return true
   }
 
   public async requestPasswordReset(args: any){
@@ -93,62 +118,171 @@ class AuthService {
     }
   }
 
-  private _notify(event: AuthEvents) {
-    this.emitters.forEach(x => x.callback(event, this.currentSession))
-  }
-
-  private _handleAuthEvents() {
-    const { data } = this.on((event, session) => {
-      this._handleTokenChanged(event, session?.access_token, 'CLIENT')
-    })
-    return data
-  }
-
-  /**
-   * Overrides the JWT on the current client. The JWT will then be sent in all subsequent network requests.
-   * @param access_token a jwt access token
-   */
-  setAuth(access_token: string): Session {
-    this.currentSession = {
-      ...this.currentSession,
-      accessToken,
-      tokenType: 'bearer',
-      user: this.api.getUser(this.user.userId),
-    }
-
-    this._pub(AuthEvents.TOKEN_REFRESHED)
-
-    return this.currentSession
-  }
+  // private _handleAuthEvents() {
+  //   const { data } = this.on((event, session) => {
+  //     this._handleTokenChanged(event, session?.accessToken, 'CLIENT')
+  //   })
+  //   return data
+  // }
 
   async getUser() {
     const user = await this.api.getUser(this.user.userId)
     return user
   }
 
-  private _pub(event: AuthEvents) {
+  private _publish(event: AuthEvents) {
     this.emitters.forEach(x => x.callback(event, this.currentSession))
   }
 
   /**
    * Clear and re-create refresh token timer
    * @param value time intervals in milliseconds
+   * // TODO: fix all the red squigglies
    */
   private _startWatchToken(value: number) {
     if (this.refreshTimer) clearTimeout(this.refreshTimer)
-    if (value <= 0 || !this.autoRefreshToken) return
+    if (value <= 0 || !this.refreshToken) return
 
     this.refreshTimer = setTimeout(async () => {
       this.networkRetries++
-      const { error } = await this._callRefreshToken()
+      const { error } = await this._refreshToken()
       if (!error) this.networkRetries = 0
       if (
-        error?.message === NETWORK_FAILURE.ERROR_MESSAGE &&
-        this.networkRetries < NETWORK_FAILURE.MAX_RETRIES
+        error?.message === NetworkFailure.ERROR_MESSAGE &&
+        this.networkRetries < NetworkFailure.MAX_RETRIES
       )
-        this._startAutoRefreshToken(NETWORK_FAILURE.RETRY_INTERVAL ** this.networkRetries * 100) // exponential backoff
+        this._startWatchToken(NetworkFailure.RETRY_INTERVAL ** this.networkRetries * 100) // exponential backoff
     }, value)
     if (typeof this.refreshTimer.unref === 'function') this.refreshTimer.unref()
+  }
+
+  private async _refreshToken(refreshToken = this.currentSession?.refreshToken): Promise<{ data: Session | null; error: Error | null }> {
+    try {
+      if (!refreshToken) {
+        this._publish(AuthEvents.LOGGED_OUT)
+        throw new Error('No current session.')
+      }
+      const { data, error } = await this.api.refreshSession(refreshToken)
+      if (error) throw error
+      if (!data) throw new Error('Invalid session data.')
+
+      this._saveSession(data)
+      this._publish(AuthEvents.TOKEN_REFRESHED)
+      this._publish(AuthEvents.LOGGED_IN)
+
+      return { data, error: null }
+    }
+    catch (e: any) {
+      return { data: null, error: e }
+    }
+  }
+
+  /**
+   * Attempts to get the session from LocalStorage
+   * Note: this should never be async (even for React Native), as we need it to return immediately in the constructor.
+   */
+  private _recoverSession() {
+    try {
+      const data = this.storage.getSync(StorageEnums.STORAGE_KEY)
+      if (!data || !data.session) return null
+      const { session } = data
+      const timeNow = Math.round(Date.now() / 1000)
+
+      if (session.expiresAt >= timeNow + SessionTimes.EXPIRY_MARGIN) {
+        this._saveSession(session)
+        this._publish(AuthEvents.LOGGED_IN)
+      }
+    }
+    catch (error) {
+      console.log('error', error)
+    }
+  }
+
+  /**
+   * Recovers the session from LocalStorage and refreshes
+   * Note: this method is async to accommodate for AsyncStorage e.g. in React native.
+   */
+  private async _recoverAndRefresh() {
+    try {
+      const data = await this.storage.get(StorageEnums.STORAGE_KEY)
+      if (!data) return null
+      const { session } = data
+      const timeNow = Math.round(Date.now() / 1000)
+
+      if (session.expiresAt < timeNow + SessionTimes.EXPIRY_MARGIN) {
+        if (this.refreshToken && this.currentSession?.refreshToken) {
+          this.networkRetries++
+          const { error } = await this._refreshToken(session.refreshToken)
+          if (error) {
+            console.log(error)
+            if (
+              error.message === NetworkFailure.ERROR_MESSAGE &&
+              this.networkRetries < NetworkFailure.MAX_RETRIES
+            ) {
+              if (this.refreshTimer) clearTimeout(this.refreshTimer)
+              this.refreshTimer = setTimeout(
+                () => this._recoverAndRefresh(),
+                NetworkFailure.RETRY_INTERVAL ** this.networkRetries * 100, // exponential backoff
+              )
+              return
+            }
+            await this._removeSession()
+          }
+          this.networkRetries = 0
+        }
+        else {
+          this._removeSession()
+        }
+      }
+      else if (!this.currentSession) {
+        console.log('Current session is missing data.')
+        this._removeSession()
+      }
+      else {
+        // should be handled on _recoverSession method already
+        // But we still need the code here to accommodate for AsyncStorage e.g. in React native
+        this._saveSession(this.currentSession)
+        this._publish(AuthEvents.LOGGED_IN)
+      }
+    }
+    catch (err) {
+      console.error(err)
+      return null
+    }
+  }
+
+  /**
+   * set currentSession and currentUser
+   * process to _startAutoRefreshToken if possible
+   */
+  private _saveSession(session: Session) {
+    this.currentSession = session
+    // this.currentUser = session.user
+
+    const expiresAt = session.expiresAt
+    if (expiresAt) {
+      const timeNow = Math.round(Date.now() / 1000)
+      const expiresIn = expiresAt - timeNow
+      const refreshDurationBeforeExpires = expiresIn > SessionTimes.EXPIRY_MARGIN ? SessionTimes.EXPIRY_MARGIN : 0.5
+      this._startWatchToken((expiresIn - refreshDurationBeforeExpires) * 1000)
+    }
+
+    // Do we need any extra check before persist session
+    // access_token or user ?
+    if (this.persistSession && session.expiresAt) 
+      this._persistSession(this.currentSession)
+    
+  }
+
+  private async _persistSession(currentSession: Session) {
+    const data = { currentSession, expiresAt: currentSession.expiresAt }
+    await this.storage.set(StorageEnums.STORAGE_KEY, data)
+  }
+
+  private async _removeSession(): Promise<void> {
+    this.currentSession = null
+    if (this.refreshTimer) clearTimeout(this.refreshTimer)
+    await this.storage.remove(StorageEnums.STORAGE_KEY)
   }
 }
 

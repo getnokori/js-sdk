@@ -9,7 +9,7 @@ class BrowserStorage {
 
   private _isBrowser = () => typeof window !== 'undefined'
   
-  async get(key: string): Promise<string | null>{
+  async get(key: string): Promise<any | null>{
     const value = this._isBrowser() && (await this.store?.getItem(key))
     if (!value) return null
     try {
@@ -20,7 +20,7 @@ class BrowserStorage {
     }
   }
 
-  getSync(key: string): string | null {
+  getSync(key: string): any | null {
     const value = this._isBrowser() && this.store?.getItem(key)
     if (!value || typeof value !== 'string') 
       return null
@@ -33,11 +33,11 @@ class BrowserStorage {
     }
   }
 
-  async set(key: string, value: string): Promise<void> {
+  async set(key: string, value: any): Promise<void> {
     this._isBrowser() && (await this.store?.setItem(key, JSON.stringify(value)))
   }
 
-  setSync(key: string, value: string){
+  setSync(key: string, value: any){
     this._isBrowser() && (this.store?.setItem(key, JSON.stringify(value)))
     return this
   }

@@ -1,26 +1,28 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "lib": ["ES2016", "DOM"],
-    "moduleResolution": "Node",
-    "module": "commonjs",
-    "noImplicitAny": false,
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["esnext", "dom"],
+    "moduleResolution": "node",
     "esModuleInterop": true,
+    "noImplicitAny": false,
     "experimentalDecorators": true,
-    // "emitDecoratorMetadata": true,
+    "emitDecoratorMetadata": true,
     "sourceMap": false,
     "strict" :true,
+    "skipLibCheck": true,
     "removeComments": true,
     "outDir": "dist/",
-    "rootDir": "src",
     "baseUrl": ".",
     "resolveJsonModule": true,
+    "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
       "@/*": ["src/*"]
     },
-    "typeRoots": ["node_modules/@types", "src/types"]
+    "types" : ["node", "jest"]
   },
-  "include": ["src/**/*.ts", "src/__tests__/payments/index.tsx"],
-  "exclude" : ["dist", "node_modules", "src/__tests__"]
+  "typeRoots": ["node_modules/@types"],
+  "include": ["src/**/*.ts"],
+  "exclude" : ["dist", "node_modules", "_scratch"]
 }
