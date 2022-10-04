@@ -24,5 +24,5 @@
   },
   "typeRoots": ["node_modules/@types"],
   "include": ["src/**/*.ts"],
-  "exclude" : ["dist", "node_modules", "_scratch"]
+  "exclude" : ["dist", "/node_modules/*"]
 }

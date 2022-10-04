@@ -40,7 +40,10 @@ const init = (apiToken: string, jwt: string | null = null ) => {
     
   Repository.interceptors.response.use(
     (response) => {
-      return response.data
+      if(response.data.statusCode === 200)
+        return response.data.data || null
+      
+      return Promise.reject(response.data)
     },
     
     async (error) => {

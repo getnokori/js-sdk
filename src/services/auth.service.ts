@@ -8,6 +8,7 @@ import type Subscription from '@/types/subscription.d'
 import StorageService from '@/services/storage.service'
 import StorageEnums from '@/enums/storage/storage.enum'
 import SessionTimes from '@/enums/auth/times.enum'
+import AuthStatuses from '@/enums/auth/authStatuses.enum'
 
 /**
  * End of day notes: 
@@ -57,13 +58,27 @@ class AuthService {
   }
 
   public async login(args: any){
-    const loginResponse = await this.api.login(args)
-    console.log(loginResponse)
-    process.exit()
-    if(loginResponse)
-      return loginResponse
+    this._removeSession()
 
-    return null
+    const { data, error } = await this.api.login(args)
+    if (error || !data) return { error }
+
+    if (data?.status === AuthStatuses.AUTHORIZED) {
+      this._saveSession(data)
+      this._publish(AuthEvents.LOGGED_IN)
+    }
+    else{
+      this._publish(AuthEvents.LOGGED_OUT)
+    }
+
+    return { 
+      redirectTo: data.redirectTo, 
+      user: {
+        accountId: data.session.accountId,
+        userId: data.session.userId,
+      }, 
+      error: null, 
+    }
   }
 
   public async logout(): Promise<boolean> {
@@ -113,8 +128,8 @@ class AuthService {
       this.emitters.set(id, subscription)
       return { data: subscription, error: null }
     }
-    catch (e) {
-      return { data: null, error: e as string }
+    catch (error: any) {
+      return { data: null, error: error }
     }
   }
 
@@ -166,14 +181,20 @@ class AuthService {
       if (error) throw error
       if (!data) throw new Error('Invalid session data.')
 
-      this._saveSession(data)
+      if(data.status !== AuthStatuses.AUTHORIZED){
+        this._publish(AuthEvents.LOGGED_OUT)
+        throw new Error('Session is expired.')
+      }
+
+      this._saveSession(data.session)
       this._publish(AuthEvents.TOKEN_REFRESHED)
       this._publish(AuthEvents.LOGGED_IN)
 
       return { data, error: null }
     }
-    catch (e: any) {
-      return { data: null, error: e }
+    catch (error: any) {
+      console.error(error)
+      return { data: null, error: error }
     }
   }
 
@@ -194,7 +215,8 @@ class AuthService {
       }
     }
     catch (error) {
-      console.log('error', error)
+      console.error(error)
+      return { data: null, error: error }
     }
   }
 
@@ -245,9 +267,9 @@ class AuthService {
         this._publish(AuthEvents.LOGGED_IN)
       }
     }
-    catch (err) {
-      console.error(err)
-      return null
+    catch (error) {
+      console.error(error)
+      return { data: null, error: error }
     }
   }
 
@@ -271,7 +293,6 @@ class AuthService {
     // access_token or user ?
     if (this.persistSession && session.expiresAt) 
       this._persistSession(this.currentSession)
-    
   }
 
   private async _persistSession(currentSession: Session) {
