@@ -22,7 +22,17 @@ import AuthStatuses from '@/enums/auth/authStatuses.enum'
 
 class AuthService {
 
-  protected emitters: Map<string, Subscription> = new Map()
+  protected emitters: Record<string, Map<string, Subscription>> = { 
+    LOGGED_OUT: new Map(),
+    LOGGED_IN: new Map(),
+    TOKEN_CREATED: new Map(),
+    TOKEN_REFRESHED: new Map(),
+    SESSION_CREATED: new Map(),
+    SESSION_DELETED: new Map(),
+    SESSION_UPDATED: new Map(),
+    USER_UPDATED: new Map(),
+    USER_DELETED: new Map(),
+  }
   protected currentSession: Session | null = null
   protected api: AuthHTTP
   protected user: any = null // TODO: Define a :User type for this
@@ -65,10 +75,10 @@ class AuthService {
 
     if (data?.status === AuthStatuses.AUTHORIZED) {
       this._saveSession(data)
-      this._publish(AuthEvents.LOGGED_IN)
+      this._notify(AuthEvents.LOGGED_IN)
     }
     else{
-      this._publish(AuthEvents.LOGGED_OUT)
+      this._notify(AuthEvents.LOGGED_OUT)
     }
 
     return { 
@@ -87,7 +97,7 @@ class AuthService {
 
     await this.api.logout(this.currentSession.sessionKey)
     await this._removeSession()
-    this._publish(AuthEvents.LOGGED_OUT)
+    this._notify(AuthEvents.LOGGED_OUT)
 
     return true
   }
@@ -112,7 +122,7 @@ class AuthService {
    * Receive a notification every time an auth event happens.
    * @returns {Subscription} A subscription object which can be used to unsubscribe itself.
    */
-  public on(callback: (event: AuthEvents, session: Session | null) => void): {
+  public on(authEvent, callback: (session: Session | null) => void): {
     data: Subscription | null
     error: string | null
   } {
@@ -122,10 +132,10 @@ class AuthService {
         id,
         callback,
         unsubscribe: () => {
-          this.emitters.delete(id)
+          this.emitters[authEvent].delete(id)
         },
       }
-      this.emitters.set(id, subscription)
+      this.emitters[authEvent].set(id, subscription)
       return { data: subscription, error: null }
     }
     catch (error: any) {
@@ -133,20 +143,13 @@ class AuthService {
     }
   }
 
-  // private _handleAuthEvents() {
-  //   const { data } = this.on((event, session) => {
-  //     this._handleTokenChanged(event, session?.accessToken, 'CLIENT')
-  //   })
-  //   return data
-  // }
-
   async getUser() {
     const user = await this.api.getUser(this.user.userId)
     return user
   }
 
-  private _publish(event: AuthEvents) {
-    this.emitters.forEach(x => x.callback(event, this.currentSession))
+  private _notify(authEvent: AuthEvents) {
+    this.emitters[authEvent].forEach(x => x.callback(this.currentSession))
   }
 
   /**
@@ -174,7 +177,7 @@ class AuthService {
   private async _refreshToken(refreshToken = this.currentSession?.refreshToken): Promise<{ data: Session | null; error: Error | null }> {
     try {
       if (!refreshToken) {
-        this._publish(AuthEvents.LOGGED_OUT)
+        this._notify(AuthEvents.LOGGED_OUT)
         throw new Error('No current session.')
       }
       const { data, error } = await this.api.refreshSession(refreshToken)
@@ -182,13 +185,13 @@ class AuthService {
       if (!data) throw new Error('Invalid session data.')
 
       if(data.status !== AuthStatuses.AUTHORIZED){
-        this._publish(AuthEvents.LOGGED_OUT)
+        this._notify(AuthEvents.LOGGED_OUT)
         throw new Error('Session is expired.')
       }
 
       this._saveSession(data.session)
-      this._publish(AuthEvents.TOKEN_REFRESHED)
-      this._publish(AuthEvents.LOGGED_IN)
+      this._notify(AuthEvents.TOKEN_REFRESHED)
+      this._notify(AuthEvents.LOGGED_IN)
 
       return { data, error: null }
     }
@@ -211,7 +214,7 @@ class AuthService {
 
       if (session.expiresAt >= timeNow + SessionTimes.EXPIRY_MARGIN) {
         this._saveSession(session)
-        this._publish(AuthEvents.LOGGED_IN)
+        this._notify(AuthEvents.LOGGED_IN)
       }
     }
     catch (error) {
@@ -264,7 +267,7 @@ class AuthService {
         // should be handled on _recoverSession method already
         // But we still need the code here to accommodate for AsyncStorage e.g. in React native
         this._saveSession(this.currentSession)
-        this._publish(AuthEvents.LOGGED_IN)
+        this._notify(AuthEvents.LOGGED_IN)
       }
     }
     catch (error) {

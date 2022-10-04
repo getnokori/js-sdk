@@ -9,7 +9,7 @@ export interface Subscription {
   /**
    * The function to call every time there is an event. eg: (eventName) => {}
    */
-  callback: (event: AuthEvents, session: Session | null) => void
+  callback: (session: Session | null) => void
   /**
    * Call this to remove the listener.
    */
