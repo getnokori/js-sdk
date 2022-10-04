@@ -52,19 +52,19 @@ class AuthService {
   }
 
   public async signup(args: any) {
-    const signupResponse = await this.api.signup(args)
-    if(signupResponse)
-      return signupResponse
+    const { data, error } = await this.api.signup(args)
+    if(!data)
+      return { data: null, error: error }
 
-    return null
+    return { data: data, error: null }
   }
 
   public async verifyUser(args: any){
-    const verifyResponse = await this.api.verifyUser(args)
-    if(verifyResponse)
-      return verifyResponse
+    const { data, error } = await this.api.verifyUser(args)
+    if(!data)
+      return { data: null, error: error }
 
-    return null
+    return { data: data, error: null }
   }
 
   public async login(args: any){
@@ -79,14 +79,17 @@ class AuthService {
     }
     else{
       this._notify(AuthEvents.LOGGED_OUT)
+      return { data: null, error: 'Unauthorized' }
     }
 
-    return { 
-      redirectTo: data.redirectTo, 
-      user: {
-        accountId: data.session.accountId,
-        userId: data.session.userId,
-      }, 
+    return {
+      data: {
+        redirectTo: data.redirectTo, 
+        user: {
+          accountId: data.session.accountId,
+          userId: data.session.userId,
+        }, 
+      },
       error: null, 
     }
   }
@@ -103,19 +106,19 @@ class AuthService {
   }
 
   public async requestPasswordReset(args: any){
-    const requestPasswordResetResponse = await this.api.requestPasswordReset(args)
-    if(requestPasswordResetResponse)
-      return requestPasswordResetResponse
+    const { data, error } = await this.api.requestPasswordReset(args)
+    if(!data)
+      return { data: null, error: error }
 
-    return null
+    return { data: data, error: null }
   }
 
   public async resetPassword(args: any){
-    const resetPasswordResponse = await this.api.resetPassword(args)
-    if(resetPasswordResponse)
-      return resetPasswordResponse
+    const { data, error } = await this.api.resetPassword(args)
+    if(!data)
+      return { data: null, error: error }
 
-    return null
+    return { data: data, error: null }
   }
 
   /**
