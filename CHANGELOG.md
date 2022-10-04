@@ -1,3 +1,11 @@
+## <small>1.0.18 (2022-10-04)</small>
+
+* fix: improve variable naming ([cced1c1](https://github.com/loladb/sdk-js/commit/cced1c1))
+* feat: adds 'getUser()' ([803d3bc](https://github.com/loladb/sdk-js/commit/803d3bc))
+* feat: adds event indexed subscription ([80a96be](https://github.com/loladb/sdk-js/commit/80a96be))
+
+
+
 ## <small>1.0.17 (2022-10-04)</small>
 
 
