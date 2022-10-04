@@ -1,3 +1,12 @@
+## <small>1.0.16 (2022-10-04)</small>
+
+* fix: updates auth strategy prop nam ([78092d2](https://github.com/loladb/sdk-js/commit/78092d2))
+* feat: adds login/auth functionality ([a65ac0a](https://github.com/loladb/sdk-js/commit/a65ac0a))
+* wip: adding token base auth functions ([c1fd40d](https://github.com/loladb/sdk-js/commit/c1fd40d))
+* wip: finalizing tests for auth functionality ([bd8f43a](https://github.com/loladb/sdk-js/commit/bd8f43a))
+
+
+
 ## <small>1.0.15 (2022-09-28)</small>
 
 

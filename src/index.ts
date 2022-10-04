@@ -21,4 +21,3 @@ export class LolaDB {
 }
 
 export default LolaDB
-module.exports = LolaDB
