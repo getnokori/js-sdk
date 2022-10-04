@@ -1,3 +1,8 @@
+## <small>1.0.17 (2022-10-04)</small>
+
+
+
+
 ## <small>1.0.16 (2022-10-04)</small>
 
 * fix: updates auth strategy prop nam ([78092d2](https://github.com/loladb/sdk-js/commit/78092d2))
