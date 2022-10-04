@@ -144,8 +144,18 @@ class AuthService {
   }
 
   async getUser() {
-    const user = await this.api.getUser(this.user.userId)
-    return user
+    try {
+      if(!this.user.userId) throw new Error('No user id found')
+      const { data, error } = await this.api.getUser(this.user.userId)
+      if(!data)
+        return { data: null, error: error }
+      
+      return { data: data, error: null }
+    }
+    catch (error) {
+      console.error(error)
+      return { data: null, error: error }
+    }
   }
 
   private _notify(authEvent: AuthEvents) {
