@@ -1,3 +1,9 @@
+## <small>1.0.19 (2022-10-04)</small>
+
+* fix: making class response more consistent ([7b42579](https://github.com/loladb/sdk-js/commit/7b42579))
+
+
+
 ## <small>1.0.18 (2022-10-04)</small>
 
 * fix: improve variable naming ([cced1c1](https://github.com/loladb/sdk-js/commit/cced1c1))
