@@ -41,17 +41,13 @@ const init = (apiToken: string, jwt: string | null = null ) => {
   Repository.interceptors.response.use(
     (response) => {
       if(response.data.statusCode === 200)
-        return response.data.data || null
+        return response.data || null
       
       return Promise.reject(response.data)
     },
     
     async (error) => {
-      if (axios.isAxiosError(error)) 
-        return Promise.reject(error)
-      
-      else
-        return Promise.reject(error.response.data)
+      return Promise.reject(error.response.data)
       
     },
   )

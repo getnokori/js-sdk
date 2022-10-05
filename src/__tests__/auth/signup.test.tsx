@@ -3,30 +3,33 @@ import LolaDB from '../../index'
 const loladb = new LolaDB('lola_pk_prod_YDzGnSnlLt2xnrnXedJ3hjXOWbWzjQAcbtOc')
 
 describe('loladb Auth', () => {
+  const int = Math.floor(Math.random() * 10000)
+  const email = `user+${int}@loladb.com`
   it('should be able to signup', async () => {
-    const int = Math.floor(Math.random() * 10000)
-    const auth = await loladb.auth.signup({
-      email: `wes+${int}@loladb.com`, 
+    
+    const { data, error } = await loladb.auth.signup({
+      email, 
       password: '9j4f19j3d3d9j3d9', 
       firstName: 'John', 
       lastName: 'Wallaby',
     })
 
-    expect(auth).toBeTruthy()
-    expect(auth.status).toBe('success')
-    expect(auth.statusCode).toBe(200)
+    expect(data).toBeTruthy()
+    expect(data.created).toBeTruthy()
   })
 
   it('should fail due to duplicate email', async () => {
     const int = Math.floor(Math.random() * 10000)
-    const auth = await loladb.auth.signup({
-      email: 'wes@loladb.com', 
+    const { data, error } = await loladb.auth.signup({
+      email, 
       password: '9j4f19j3d3d9j3d9', 
       firstName: 'John', 
       lastName: 'Wallaby',
     })
 
-    expect(auth).toBeTruthy()
-    expect(auth.status).toBe('error')
+    expect(error).toBeTruthy()
+    expect(data).toBeFalsy()
+    expect(error.status).toBe('error')
+    expect(error.message).toBeDefined()
   })
 })
