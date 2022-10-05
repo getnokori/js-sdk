@@ -1,3 +1,10 @@
+## <small>1.0.21 (2022-10-05)</small>
+
+* Improve type definition ([4a05ffd](https://github.com/loladb/sdk-js/commit/4a05ffd))
+* fix: improves type definition ([ff3e282](https://github.com/loladb/sdk-js/commit/ff3e282))
+
+
+
 ## <small>1.0.20 (2022-10-05)</small>
 
 * fix: standarizing. Updating jest auth tests. ([dc8a8fc](https://github.com/loladb/sdk-js/commit/dc8a8fc))
