@@ -1,3 +1,9 @@
+## <small>1.0.22 (2022-10-05)</small>
+
+* fix: session logic bug ([7c35bd3](https://github.com/loladb/sdk-js/commit/7c35bd3))
+
+
+
 ## <small>1.0.21 (2022-10-05)</small>
 
 * Improve type definition ([4a05ffd](https://github.com/loladb/sdk-js/commit/4a05ffd))
