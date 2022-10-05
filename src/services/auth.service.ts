@@ -83,11 +83,13 @@ class AuthService {
     }
 
     return {
-      redirectTo: data.redirectTo, 
-      user: {
-        accountId: data.session.accountId,
-        userId: data.session.userId,
-      }, 
+      data: {
+        redirectTo: data.redirectTo, 
+        session: {
+          accountId: data.session.accountId,
+          userId: data.session.userId,
+        }, 
+      },
       error: null, 
     }
   }
