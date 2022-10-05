@@ -1,3 +1,9 @@
+## <small>1.0.20 (2022-10-05)</small>
+
+* fix: standarizing. Updating jest auth tests. ([dc8a8fc](https://github.com/loladb/sdk-js/commit/dc8a8fc))
+
+
+
 ## <small>1.0.19 (2022-10-04)</small>
 
 * fix: making class response more consistent ([7b42579](https://github.com/loladb/sdk-js/commit/7b42579))
