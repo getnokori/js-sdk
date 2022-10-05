@@ -74,7 +74,7 @@ class AuthService {
     if (error || !data) return { error }
 
     if (data?.status === AuthStatuses.AUTHORIZED) {
-      this._saveSession(data)
+      this._saveSession(data.session)
       this._notify(AuthEvents.LOGGED_IN)
     }
     else{
@@ -295,7 +295,7 @@ class AuthService {
    */
   private _saveSession(session: Session) {
     this.currentSession = session
-    // this.currentUser = session.user
+    this.refreshToken = session.refreshToken
 
     const expiresAt = session.expiresAt
     if (expiresAt) {
