@@ -125,7 +125,7 @@ class AuthService {
    * Receive a notification every time an auth event happens.
    * @returns {Subscription} A subscription object which can be used to unsubscribe itself.
    */
-  public on(authEvent, callback: (session: Session | null) => void): {
+  public on(authEvent: keyof typeof AuthEvents, callback: (session: Session | null) => void): {
     data: Subscription | null
     error: string | null
   } {
