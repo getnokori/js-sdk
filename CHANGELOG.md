@@ -1,3 +1,9 @@
+## <small>1.0.23 (2022-10-06)</small>
+
+* feat: adds querys. adds update token wip. ([301b396](https://github.com/loladb/sdk-js/commit/301b396))
+
+
+
 ## <small>1.0.22 (2022-10-05)</small>
 
 * fix: session logic bug ([7c35bd3](https://github.com/loladb/sdk-js/commit/7c35bd3))
