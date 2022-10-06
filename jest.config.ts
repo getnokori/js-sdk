@@ -6,7 +6,7 @@ const jestConfig = {
   setupFiles: ['jest-environment-jsdom', 'jest-localstorage-mock'],
   resetMocks: false,
   transform: {
-    '^.+\\.tsx?$': ['ts-jest'],
+    '^.+\\.tsx?$': ['@swc/jest'],
   },
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],

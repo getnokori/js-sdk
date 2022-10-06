@@ -1,20 +1,17 @@
-interface AuthAPIResponse {
-  data: any | null
-  error: Error | null 
-  statusCode?: number | null 
-}
+import type lolaAPIResponse from '@/types/lolaApiResponse.interface'
 
 class AuthHTTP {
   private resource = '/auth'
   private httpService 
 
   constructor (HTTPService) {
-    this.httpService = HTTPService
+    this.httpService = HTTPService.repository
   }
 
-  public async signup(args: any): Promise<AuthAPIResponse> {
+  public async signup(args: any): Promise<lolaAPIResponse> {
     try {
       const result = await this.httpService.post(`${this.resource}/signup`, args)
+      console.log('result', result)
       if(result.status === 'error')
         return { data: null, error: result, statusCode: result.statusCode }
       
@@ -25,7 +22,7 @@ class AuthHTTP {
     }
   }
 
-  public async verifyUser(args: any): Promise<AuthAPIResponse> {
+  public async verifyUser(args: any): Promise<lolaAPIResponse> {
     try {
       const result = await this.httpService.get(`${this.resource}/verify/${args.verifyToken}`)
       if(result.status === 'error')
@@ -38,7 +35,7 @@ class AuthHTTP {
     }
   }
 
-  public async login(args: any): Promise<AuthAPIResponse> {
+  public async login(args: any): Promise<lolaAPIResponse> {
     try{
       const result = await this.httpService.post(`${this.resource}/login`, args)
       if(result.status === 'error')
@@ -51,7 +48,7 @@ class AuthHTTP {
     }
   }
 
-  public async logout(token: string): Promise<AuthAPIResponse> {
+  public async logout(token: string): Promise<lolaAPIResponse> {
     try{
       const result = await this.httpService.get(`${this.resource}/logout?token=${token}`)
       if(result.status === 'error')
@@ -65,7 +62,7 @@ class AuthHTTP {
 
   }
 
-  public async requestPasswordReset(args: any): Promise<AuthAPIResponse> {
+  public async requestPasswordReset(args: any): Promise<lolaAPIResponse> {
     try{
       const result = await this.httpService.post(`${this.resource}/password-reset-request`, args)
       if(result.status === 'error')
@@ -78,7 +75,7 @@ class AuthHTTP {
     }
   }
 
-  public async resetPassword(args: any): Promise<AuthAPIResponse> {
+  public async resetPassword(args: any): Promise<lolaAPIResponse> {
     try{
       const result = await this.httpService.post(`${this.resource}/password-reset`, args)
       if(result.status === 'error')
@@ -91,7 +88,7 @@ class AuthHTTP {
     }
   }
 
-  public async changePassword({ oldPassword, newPassword }): Promise<AuthAPIResponse> {
+  public async changePassword({ oldPassword, newPassword }): Promise<lolaAPIResponse> {
     try{
       const result = this.httpService.put(`${this.resource}/password-change`, {
         oldPassword,
@@ -108,7 +105,7 @@ class AuthHTTP {
   }
 
   // TODO Implement /user in api-core
-  public async getUser(userId: string): Promise<AuthAPIResponse> {
+  public async getUser(userId: string): Promise<lolaAPIResponse> {
     try{
       const result = await this.httpService.get(`${this.resource}/users/${userId}`)
       if(result.status === 'error')
@@ -121,7 +118,7 @@ class AuthHTTP {
     }
   }
 
-  public async refreshSession(token: string): Promise<AuthAPIResponse> {
+  public async refreshSession(token: string): Promise<lolaAPIResponse> {
     try{
       const result = await this.httpService.get(`${this.resource}/refresh?token=${token}`)
       if(result.status === 'error')

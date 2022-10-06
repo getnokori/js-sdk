@@ -5,16 +5,21 @@ const loladb = new LolaDB('lola_pk_prod_YDzGnSnlLt2xnrnXedJ3hjXOWbWzjQAcbtOc')
 
 describe('loladb Auth', () => {
   it('should log a user in successfully', async () => {
-    const { redirectTo, user, error } = await loladb.auth.login({
+    const { data, error } = await loladb.auth.login({
       strategy: 'password',
       email: 'wes+4539@loladb.com',
       password: 'af3agg5532323f3',
     })
 
-    expect(user).toBeTruthy()
-    expect(user?.accountId).toBeTruthy()
-    expect(user?.userId).toBeTruthy()
+    expect(data).toHaveProperty('session')
+    expect(data).toHaveProperty('redirectTo')
+
+    const session = data.session
+
+    expect(data).toBeTruthy()
+    expect(session?.accountId).toBeTruthy()
+    expect(session?.userId).toBeTruthy()
     expect(error).toBeFalsy()
-    expect(redirectTo).toEqual('/')
+    expect(data.redirectTo).toEqual('/')
   })
 })
