@@ -1,3 +1,9 @@
+## <small>1.0.24 (2022-10-07)</small>
+
+* fix: wrong storage key ([30cc2b7](https://github.com/loladb/sdk-js/commit/30cc2b7))
+
+
+
 ## <small>1.0.23 (2022-10-06)</small>
 
 * feat: adds querys. adds update token wip. ([301b396](https://github.com/loladb/sdk-js/commit/301b396))
