@@ -312,7 +312,7 @@ class AuthService {
   }
 
   private async _persistSession(currentSession: Session) {
-    const data = { currentSession, expiresAt: currentSession.expiresAt }
+    const data = { session: currentSession, expiresAt: currentSession.expiresAt }
     await this.storage.set(StorageEnums.STORAGE_KEY, data)
   }
 
