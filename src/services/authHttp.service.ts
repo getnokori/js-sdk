@@ -10,7 +10,7 @@ class AuthHTTP {
     this.httpService = HTTPService.repository
   }
 
-  public async refreshServiceToken(token: string): Promise<boolean | null> {
+  public async refreshServiceToken(token: string | null): Promise<boolean | null> {
     await this.baseHTTPService.updateToken(token)
     return true
   }

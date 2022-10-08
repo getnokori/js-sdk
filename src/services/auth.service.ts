@@ -111,6 +111,7 @@ class AuthService {
     catch (error) {}
 
     await this._removeSession()
+    this.api.refreshServiceToken(null)
     this._notify(AuthEvents.LOGGED_OUT)
 
     return result

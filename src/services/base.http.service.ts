@@ -25,6 +25,7 @@ class BaseHTTP {
         if(!config) throw new Error('No token provided')
         try {
           config.headers[HTTPHeaders.LOLADB_API_KEY] = this.apiToken
+          console.log('if bearerToken', this.bearerToken)
           if(this.bearerToken) config.headers[HTTPHeaders.AUTHORIZATION] = `Bearer ${this.bearerToken}`
         }
         catch (error) {
@@ -64,6 +65,7 @@ class BaseHTTP {
 
   public updateToken = (token: string) => {
     this.bearerToken = token
+    this.init()
     console.log('token updated', this.bearerToken)
   }
 }
