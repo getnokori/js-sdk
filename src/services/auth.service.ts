@@ -75,6 +75,7 @@ class AuthService {
 
     if (data?.status === AuthStatuses.AUTHORIZED) {
       this._saveSession(data.session)
+      this.api.refreshServiceToken(data.session.accessToken)
       this._notify(AuthEvents.LOGGED_IN)
     }
     else{
@@ -94,15 +95,25 @@ class AuthService {
     }
   }
 
-  public async logout(): Promise<boolean> {
-    if (!this.currentSession) return false
-    if(!this.currentSession.sessionKey) return true
+  public async logout(){
+    const result = {
+      data: {
+        redirectTo: '/login', 
+      },
+      error: null, 
+    }
 
-    await this.api.logout(this.currentSession.sessionKey)
+    if (!this.currentSession) return result
+
+    try {
+      await this.api.logout(this.currentSession.accessToken)
+    }
+    catch (error) {}
+
     await this._removeSession()
     this._notify(AuthEvents.LOGGED_OUT)
 
-    return true
+    return result
   }
 
   public async requestPasswordReset(args: any){
@@ -156,7 +167,6 @@ class AuthService {
       return { user: data, error: null }
     }
     catch (error) {
-      console.error(error)
       return { data: null, error: error }
     }
   }
@@ -231,7 +241,6 @@ class AuthService {
       }
     }
     catch (error) {
-      console.error(error)
       return { data: null, error: error }
     }
   }
@@ -252,7 +261,6 @@ class AuthService {
           this.networkRetries++
           const { error } = await this._refreshToken(session.refreshToken)
           if (error) {
-            console.log(error)
             if (
               error.message === NetworkFailure.ERROR_MESSAGE &&
               this.networkRetries < NetworkFailure.MAX_RETRIES

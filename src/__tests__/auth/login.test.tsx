@@ -21,5 +21,32 @@ describe('loladb Auth', () => {
     expect(session?.userId).toBeTruthy()
     expect(error).toBeFalsy()
     expect(data.redirectTo).toEqual('/')
+
+    expect(localStorage.getItem('loladb.auth')).toBeTruthy()
+    const liSession = JSON.parse(localStorage.getItem('loladb.auth') || '')
+
+    expect(liSession).toHaveProperty('session')
+    expect(liSession.session).toHaveProperty('accessToken')
+
+    expect(liSession.session).toHaveProperty('expiresAt')
+    expect(typeof liSession.session.expiresAt).toBe('number')
+
+    expect(liSession.session).toHaveProperty('expiresIn')
+    expect(typeof liSession.session.expiresIn).toBe('number')
+
+    expect(liSession.session).toHaveProperty('refreshToken')
+    expect(liSession.session).toHaveProperty('userId')
+  })
+
+  it('Should successfully log a user out', async () => {
+    expect(localStorage.getItem('loladb.auth')).toBeTruthy()
+    const liSession = JSON.parse(localStorage.getItem('loladb.auth') || '')
+    expect(liSession).toHaveProperty('session')
+    expect(liSession.session).toHaveProperty('accessToken')
+
+    const { data, error } = await loladb.auth.logout()
+
+    expect(localStorage.getItem('loladb.auth')).toBeFalsy()
+    expect(data.redirectTo).toEqual('/login')
   })
 })

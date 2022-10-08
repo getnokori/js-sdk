@@ -48,7 +48,6 @@ class BaseHTTP {
       
     this.repository.interceptors.response.use(
       (response) => {
-        console.log('http response', response)
         if(response.data.statusCode === 200)
           return response.data || null
         

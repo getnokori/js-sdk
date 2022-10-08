@@ -2,16 +2,22 @@ import type lolaAPIResponse from '@/types/lolaApiResponse.interface'
 
 class AuthHTTP {
   private resource = '/auth'
-  private httpService 
+  private httpService
+  private baseHTTPService
 
   constructor (HTTPService) {
+    this.baseHTTPService = HTTPService
     this.httpService = HTTPService.repository
+  }
+
+  public async refreshServiceToken(token: string): Promise<boolean | null> {
+    await this.baseHTTPService.updateToken(token)
+    return true
   }
 
   public async signup(args: any): Promise<lolaAPIResponse> {
     try {
       const result = await this.httpService.post(`${this.resource}/signup`, args)
-      console.log('result', result)
       if(result.status === 'error')
         return { data: null, error: result, statusCode: result.statusCode }
       
