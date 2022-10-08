@@ -13,6 +13,8 @@ class BaseHTTP {
       baseURL: this.baseURL,
       headers: {
         'Cache-Control': 'no-store',
+        'Access-Control-Max-Age': 86400,
+        'Content-Type': 'application/json',
       },
     })
 
