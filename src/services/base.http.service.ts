@@ -28,7 +28,7 @@ class BaseHTTP {
         try {
           config.headers[HTTPHeaders.LOLADB_API_KEY] = this.apiToken
           console.log('if bearerToken', this.bearerToken)
-          if(this.bearerToken) config.headers[HTTPHeaders.AUTHORIZATION] = `Bearer ${this.bearerToken}`
+          config.headers[HTTPHeaders.AUTHORIZATION] = `Bearer ${this.bearerToken}`
         }
         catch (error) {
           console.error('Error adding token to auth headers', error)
