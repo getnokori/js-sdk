@@ -106,6 +106,7 @@ class AuthService {
     if (!this.currentSession) return result
 
     try {
+      console.log('making api log out req')
       await this.api.logout(this.currentSession.accessToken)
     }
     catch (error) {}
