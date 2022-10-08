@@ -4,7 +4,7 @@ import HTTPHeaders from '../enums/httpHeaders.enum'
 class BaseHTTP {
   protected apiToken: string
   protected baseURL = 'http://127.0.0.1:4777/v1'
-  public repository
+  private repository
   protected bearerToken: string | null = null
 
   constructor(apiToken: string) {
@@ -65,10 +65,16 @@ class BaseHTTP {
     )
   }
 
-  public updateToken = (token: string) => {
+  public updateToken = async (token: string) => {
     console.log('before token updated', this.bearerToken)
+    console.log('1', this.bearerToken)
     this.bearerToken = token
-    this.init()
+    console.log('2', this.bearerToken)
+    console.log('2.5', this.repository)
+    // this.repository = null
+    // console.log('3', this.repository)
+    // this.init()
+    console.log('4', this.repository)
     console.log('token updated', this.bearerToken)
   }
 }

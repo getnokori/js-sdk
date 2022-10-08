@@ -75,7 +75,7 @@ class AuthService {
 
     if (data?.status === AuthStatuses.AUTHORIZED) {
       this._saveSession(data.session)
-      this.api.refreshServiceToken(data.session.accessToken)
+      await this.api.refreshServiceToken(data.session.accessToken)
       this._notify(AuthEvents.LOGGED_IN)
     }
     else{
