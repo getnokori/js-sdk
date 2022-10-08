@@ -74,7 +74,7 @@ class AuthService {
 
     const { data, error } = await this.api.login(args)
     if (error || !data) return { error }
-
+    console.log('login data', data)
     if (data?.status === AuthStatuses.AUTHORIZED) {
       this._saveSession(data.session)
       await this.api.refreshServiceToken(data.session.accessToken)
