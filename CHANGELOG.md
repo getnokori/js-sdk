@@ -1,3 +1,10 @@
+## <small>1.0.25 (2022-10-08)</small>
+
+* feat: adds better logout check ([486ecd7](https://github.com/loladb/sdk-js/commit/486ecd7))
+* fix: logout bug ([26090cb](https://github.com/loladb/sdk-js/commit/26090cb))
+
+
+
 ## <small>1.0.24 (2022-10-07)</small>
 
 * fix: wrong storage key ([30cc2b7](https://github.com/loladb/sdk-js/commit/30cc2b7))
