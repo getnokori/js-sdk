@@ -29,15 +29,13 @@ class BaseHTTP {
           if(!req.headers[HTTPHeaders.LOLADB_API_KEY]) 
             req.headers[HTTPHeaders.LOLADB_API_KEY] = this.apiToken
            
-          const token = await this.store.get(StorageEnums.STORAGE_KEY)
-          console.log('if bearerToken', this.bearerToken)
-          if(token && req.headers) {
-            if(!req.headers[HTTPHeaders.AUTHORIZATION])
-              req.headers[HTTPHeaders.AUTHORIZATION] = `Bearer ${token}`
-            
-            else
-              req.headers[HTTPHeaders.AUTHORIZATION] = `Bearer ${token}`
-            
+          const data = await this.store.get(StorageEnums.STORAGE_KEY)
+          console.log('if session', data)
+          if(data.session && data.session.accessToken) {
+            if(!req.headers[HTTPHeaders.AUTHORIZATION]) req.headers[HTTPHeaders.AUTHORIZATION] = ''
+              
+            req.headers[HTTPHeaders.AUTHORIZATION] = `Bearer ${data.session.accessToken}`
+            console.log(req.headers)
           }
         }
         catch (error) {
