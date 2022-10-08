@@ -1,3 +1,8 @@
+## <small>1.0.26 (2022-10-08)</small>
+
+
+
+
 ## <small>1.0.25 (2022-10-08)</small>
 
 * feat: adds better logout check ([486ecd7](https://github.com/loladb/sdk-js/commit/486ecd7))

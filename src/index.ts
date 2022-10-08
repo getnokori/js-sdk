@@ -20,6 +20,7 @@ export class LolaDB {
     this.auth = new Auth(this.http, { autoRefreshSession: true })
     // this.billing = new Billing(this.HTTPService)
     this.query = new Query(this.http)
+    console.log('LolaDB initialized')
   }
 }
 

@@ -57,6 +57,7 @@ class AuthHTTP {
   public async logout(token: string): Promise<lolaAPIResponse> {
     try{
       const result = await this.httpService.get(`${this.resource}/logout?token=${token}`)
+      console.log(result)
       if(result.status === 'error')
         return { data: null, error: result, statusCode: result.statusCode }
       

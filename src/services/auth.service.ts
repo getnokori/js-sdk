@@ -102,7 +102,7 @@ class AuthService {
       },
       error: null, 
     }
-
+    console.log(this.currentSession)
     if (!this.currentSession) return result
 
     try {
