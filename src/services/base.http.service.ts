@@ -65,7 +65,7 @@ class BaseHTTP {
 
   public updateToken = (token: string) => {
     this.bearerToken = token
-    this.init()
+    // this.init()
     console.log('token updated', this.bearerToken)
   }
 }
