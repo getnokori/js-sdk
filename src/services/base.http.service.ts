@@ -1,11 +1,14 @@
 import axios from 'axios'
 import HTTPHeaders from '../enums/httpHeaders.enum'
+import StorageService from '@/services/storage.service'
+import StorageEnums from '@/enums/storage/storage.enum'
 
 class BaseHTTP {
   protected apiToken: string
   protected baseURL = 'http://127.0.0.1:4777/v1'
   private repository
   protected bearerToken: string | null = null
+  protected store = new StorageService()
 
   constructor(apiToken: string) {
     this.apiToken = apiToken
@@ -13,8 +16,6 @@ class BaseHTTP {
       baseURL: this.baseURL,
       headers: {
         'Cache-Control': 'no-store',
-        'Access-Control-Max-Age': 86400,
-        'Content-Type': 'application/json',
       },
     })
 
@@ -23,18 +24,27 @@ class BaseHTTP {
 
   public init = () => {
     this.repository.interceptors.request.use(
-      async (config) => {
-        if(!config) throw new Error('No token provided')
+      async (req) => {
         try {
-          config.headers[HTTPHeaders.LOLADB_API_KEY] = this.apiToken
+          if(!req.headers[HTTPHeaders.LOLADB_API_KEY]) 
+            req.headers[HTTPHeaders.LOLADB_API_KEY] = this.apiToken
+           
+          const token = await this.store.get(StorageEnums.STORAGE_KEY)
           console.log('if bearerToken', this.bearerToken)
-          config.headers[HTTPHeaders.AUTHORIZATION] = `Bearer ${this.bearerToken}`
+          if(token && req.headers) {
+            if(!req.headers[HTTPHeaders.AUTHORIZATION])
+              req.headers[HTTPHeaders.AUTHORIZATION] = `Bearer ${token}`
+            
+            else
+              req.headers[HTTPHeaders.AUTHORIZATION] = `Bearer ${token}`
+            
+          }
         }
         catch (error) {
           console.error('Error adding token to auth headers', error)
         }
       
-        return config
+        return req
       },
       
       async (error) => {
