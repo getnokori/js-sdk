@@ -48,5 +48,7 @@ describe('loladb Auth', () => {
 
     expect(localStorage.getItem('loladb.auth')).toBeFalsy()
     expect(data.redirectTo).toEqual('/login')
+
+    expect(localStorage.getItem('loladb.auth')).toBeFalsy()
   })
 })
