@@ -65,7 +65,7 @@ class BaseHTTP {
     )
   }
 
-  public updateToken = async (token: string) => {
+  public updateToken = (token: string) => {
     console.log('before token updated', this.bearerToken)
     console.log('1', this.bearerToken)
     this.bearerToken = token
@@ -76,6 +76,7 @@ class BaseHTTP {
     // this.init()
     console.log('4', this.repository)
     console.log('token updated', this.bearerToken)
+    return true
   }
 }
 

@@ -1,13 +1,14 @@
 import type lolaAPIResponse from '@/types/lolaApiResponse.interface'
+import BaseHTTP from './base.http.service'
 
 class AuthHTTP {
   private resource = '/auth'
   private httpService
   private baseHTTPService
 
-  constructor (HTTPService) {
-    this.baseHTTPService = HTTPService
-    this.httpService = HTTPService.repository
+  constructor (apiKey: string) {
+    this.baseHTTPService = new BaseHTTP(apiKey)
+    this.httpService = this.baseHTTPService.repository
   }
 
   public async refreshServiceToken(token: string | null): Promise<boolean | null> {

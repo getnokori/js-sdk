@@ -42,9 +42,11 @@ class AuthService {
   protected refreshToken = ''
   protected storage = new StorageService()
   protected autoRefreshSession = false
+  protected _apiKey
 
-  constructor(HTTPService, settings: any) {
-    this.api = new AuthHTTP(HTTPService)
+  constructor(HTTPService, settings: any, apiKey) {
+    this._apiKey = apiKey
+    this.api = new AuthHTTP(this._apiKey)
 
     this.autoRefreshSession = settings.autoRefreshSession || 1
     this._recoverSession()

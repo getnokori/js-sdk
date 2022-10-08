@@ -10,7 +10,7 @@ describe('loladb Auth', () => {
       email: 'wes+4539@loladb.com',
       password: 'af3agg5532323f3',
     })
-
+    console.log(data, error)
     expect(data).toHaveProperty('session')
     expect(data).toHaveProperty('redirectTo')
 
