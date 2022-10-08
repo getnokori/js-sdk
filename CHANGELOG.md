@@ -1,3 +1,10 @@
+## <small>1.0.38 (2022-10-08)</small>
+
+* fix: accessToken not persisting ([45a031e](https://github.com/loladb/sdk-js/commit/45a031e))
+* fix: logout bug ([26090cb](https://github.com/loladb/sdk-js/commit/26090cb))
+
+
+
 ## <small>1.0.24 (2022-10-07)</small>
 
 * fix: wrong storage key ([30cc2b7](https://github.com/loladb/sdk-js/commit/30cc2b7))
