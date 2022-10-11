@@ -1,3 +1,10 @@
+## <small>1.0.40 (2022-10-11)</small>
+
+* fix: getUser bug ([7d46594](https://github.com/loladb/sdk-js/commit/7d46594))
+* feat: adds wip billing funcs. getPlans() ([254f584](https://github.com/loladb/sdk-js/commit/254f584))
+
+
+
 ## <small>1.0.39 (2022-10-11)</small>
 
 * fix: adds this.user assignment ([67be992](https://github.com/loladb/sdk-js/commit/67be992))
