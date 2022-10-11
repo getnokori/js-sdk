@@ -4,7 +4,7 @@ const loladb = new LolaDB('lola_pk_prod_YDzGnSnlLt2xnrnXedJ3hjXOWbWzjQAcbtOc')
 
 describe('loladb Auth', () => {
   const int = Math.floor(Math.random() * 10000)
-  const email = `user+${int}@loladb.com`
+  const email = `wes+${int}@loladb.com`
   it('should be able to signup', async () => {
     
     const { data, error } = await loladb.auth.signup({

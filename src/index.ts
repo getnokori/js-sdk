@@ -1,14 +1,14 @@
 'strict'
 
 import HTTPService from '@/services/base.http.service'
-// import Billing from './billing.class'
+import Billing from '@/services/billing/billing.service'
 import Auth from '@/services/auth.service'
 import Query from '@/services/query.service'
 
 export class LolaDB {
   public _apiToken: string
   public auth: Auth
-  // public billing: Billing
+  public billing: Billing
   public http
   public query: Query
 
@@ -18,7 +18,13 @@ export class LolaDB {
     this.http = new HTTPService(this._apiToken)
 
     this.auth = new Auth(this.http, { autoRefreshSession: true })
-    // this.billing = new Billing(this.HTTPService)
+    this.billing = new Billing(this.http, {})
+    
+    this.auth.on('LOGGED_IN', (session) => {
+      if(!session?.accountId) return
+      this.billing.setAccount(session.accountId)
+    })
+
     this.query = new Query(this.http)
   }
 }

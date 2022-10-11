@@ -10,16 +10,6 @@ import StorageEnums from '@/enums/storage/storage.enum'
 import SessionTimes from '@/enums/auth/times.enum'
 import AuthStatuses from '@/enums/auth/authStatuses.enum'
 
-/**
- * End of day notes: 
- * - Need to follow the call chain all the way through to determine whats actually need
- * - GoTrue have functions that I don't think we need.
- * - Supabase sdk's implementation of GoTrue makes the above true. Need to reduce.
- * - Need to ensure session persistence and rehydration works with local storage and timers.
- * - Need to start with a successful login and work from there.
- * - The storage service may need to drop _isBrowser for jest to work?
- */
-
 class AuthService {
 
   protected emitters: Record<string, Map<string, Subscription>> = { 

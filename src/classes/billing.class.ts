@@ -1,4 +1,4 @@
-import BillingHTTP from '../services/billing.http'
+import BillingHTTP from '../services/billing/billing.http'
 
 class Billing{
   private http

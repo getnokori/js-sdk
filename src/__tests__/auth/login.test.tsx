@@ -7,8 +7,8 @@ describe('loladb Auth', () => {
   it('should log a user in successfully', async () => {
     const { data, error } = await loladb.auth.login({
       strategy: 'password',
-      email: 'wes+4539@loladb.com',
-      password: 'af3agg5532323f3',
+      email: 'wes+2788@loladb.com',
+      password: '9j4f19j3d3d9j3d9',
     })
 
     expect(data).toHaveProperty('session')
