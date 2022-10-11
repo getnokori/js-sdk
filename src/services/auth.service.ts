@@ -150,9 +150,9 @@ class AuthService {
       if(!this.user.userId) throw new Error('No user id found')
       const { data, error } = await this.api.getUser(this.user.userId)
       if(!data)
-        return { user: null, error: error }
+        return { data: null, error: error }
       
-      return { user: data, error: null }
+      return { data: data, error: null }
     }
     catch (error) {
       return { data: null, error: error }

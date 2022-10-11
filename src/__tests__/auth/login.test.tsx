@@ -38,6 +38,22 @@ describe('loladb Auth', () => {
     expect(liSession.session).toHaveProperty('userId')
   })
 
+  it('Should get the user object successfully', async()=>{
+    const { data, error } = await loladb.auth.getUser()
+
+    expect(data).toBeTruthy()
+    expect(error).toBeFalsy()
+    expect(data).toHaveProperty('userId')
+    expect(data).toHaveProperty('accountId')
+    expect(data).toHaveProperty('email')
+    expect(data).toHaveProperty('firstName')
+    expect(data).toHaveProperty('lastName')
+    expect(data).toHaveProperty('accountType')
+    expect(data).toHaveProperty('subscriptions')
+    expect(data.subscriptions).toHaveProperty('planId')
+    expect(data.subscriptions).toHaveProperty('hasPaymentMethod')
+  })
+
   it('Should successfully log a user out', async () => {
     expect(localStorage.getItem('loladb.auth')).toBeTruthy()
     const liSession = JSON.parse(localStorage.getItem('loladb.auth') || '')
