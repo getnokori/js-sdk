@@ -1,3 +1,9 @@
+## <small>1.0.39 (2022-10-11)</small>
+
+* fix: adds this.user assignment ([67be992](https://github.com/loladb/sdk-js/commit/67be992))
+
+
+
 ## <small>1.0.38 (2022-10-08)</small>
 
 * fix: accessToken not persisting ([45a031e](https://github.com/loladb/sdk-js/commit/45a031e))
