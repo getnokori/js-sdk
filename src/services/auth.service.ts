@@ -301,6 +301,7 @@ class AuthService {
    */
   private _saveSession(session: Session) {
     this.currentSession = session
+    this.user = { userId: session.userId, accountId: session.accountId }
     this.refreshToken = session.refreshToken
 
     const expiresAt = session.expiresAt
