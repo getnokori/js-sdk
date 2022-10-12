@@ -26,7 +26,9 @@ class BillingService {
 
   public async getAccountSubscription(args: any = { accountId: null }) {}
 
-  public async subscribe(args: any = { accountId: null, planId: null }) {}
+  public async subscribe(args: any = { accountId: null, planId: null }) {
+    
+  }
 
   public async unsubscribe(args: any = { accountId: null }) {}
 

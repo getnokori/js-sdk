@@ -45,4 +45,11 @@ describe('loladb Billing', () => {
     expect(plansResponse.statusCode).toBe(200)
     expect(plansResponse.data.length).toBe(3)
   })
+
+  it('should successfully subscribe an account to a plan', async () => {
+    const { data, error } = await loladb.billing.subscribe({
+      accountId: '',
+      planId: 'loladb.bplan.1',
+    })
+  })
 })
