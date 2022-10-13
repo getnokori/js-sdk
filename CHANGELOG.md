@@ -1,3 +1,10 @@
+## <small>1.0.41 (2022-10-13)</small>
+
+* fix: fixes billing bug ([3266101](https://github.com/loladb/sdk-js/commit/3266101))
+* wip: adding billing service ([a227c49](https://github.com/loladb/sdk-js/commit/a227c49))
+
+
+
 ## <small>1.0.40 (2022-10-11)</small>
 
 * fix: getUser bug ([7d46594](https://github.com/loladb/sdk-js/commit/7d46594))
