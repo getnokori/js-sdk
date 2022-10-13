@@ -60,4 +60,34 @@ describe('loladb Billing', () => {
     expect(data.subscribed).toBeTruthy()
     expect(error).toBeFalsy()
   })
+
+  it('should reject subscription to a plan w/ userId', async () => {
+    const { data, error } = await loladb.billing.subscribe({
+      accountId: 'lola.user.K9xs9aYns8yTH5SFqud',
+      planId: 'loladb.bpln.0R9ChGhrEpX95mXVSfJZ',
+    })
+
+    expect(data).toBeFalsy()
+    expect(error).toBeTruthy()
+  })
+
+  it('should reject subscription to a plan w/o planId', async () => {
+    
+    const { data, error } = await loladb.billing.subscribe({
+      accountId: 'lola.acct.892ZJiyOqiArk91Chpl',
+    })
+    
+    expect(data).toBeFalsy()
+    expect(error).toBeTruthy()
+  })
+
+  it('should reject subscription to a plan w/o accountId', async () => {
+    
+    const { data, error } = await loladb.billing.subscribe({
+      planId: 'loladb.bpln.0R9ChGhrEpX95mXVSfJZ',
+    })
+    
+    expect(data).toBeFalsy()
+    expect(error).toBeTruthy()
+  })
 })
