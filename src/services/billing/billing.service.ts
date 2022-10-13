@@ -27,7 +27,11 @@ class BillingService {
   public async getAccountSubscription(args: any = { accountId: null }) {}
 
   public async subscribe(args: any = { accountId: null, planId: null }) {
-    
+    const { data, error } = await this.api.subscribe(args)
+    if(!data)
+      return { data: null, error: error }
+
+    return { data: data, error: null }
   }
 
   public async unsubscribe(args: any = { accountId: null }) {}

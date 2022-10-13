@@ -2,54 +2,62 @@ import LolaDB from '../../index'
 
 const loladb = new LolaDB('lola_pk_prod_YDzGnSnlLt2xnrnXedJ3hjXOWbWzjQAcbtOc')
 
+beforeAll(async () => {
+  await loladb.auth.login({
+    strategy: 'password',
+    email: 'wes+2788@loladb.com',
+    password: '9j4f19j3d3d9j3d9',
+  })
+})
+
 describe('loladb Billing', () => {
   
   it('should successfully get all active plans', async () => {
-    const plansResponse = await loladb.billing.getPlans()
+    const { data, error } = await loladb.billing.getPlans()
 
-    expect(plansResponse).toBeTruthy()
-    expect(plansResponse.status).toBe('success')
-    expect(plansResponse.statusCode).toBe(200)
+    expect(data).toBeTruthy()
+    expect(error).toBeFalsy()
+    expect(data.length).toBeGreaterThan(0)
   })
 
   it('should successfully get all active plans in plan group', async () => {
-    const plansResponse = await loladb.billing.getPlans({
+    const { data, error } = await loladb.billing.getPlans({
       groupId: 'loladb.bgrp.KifiX1hf9hCq0tIFXuP',
     })
 
-    expect(plansResponse).toBeTruthy()
-    expect(plansResponse.status).toBe('success')
-    expect(plansResponse.statusCode).toBe(200)
-    expect(plansResponse.data.length).toBe(6)
+    expect(data).toBeTruthy()
+    expect(error).toBeFalsy()
+    expect(data.length).toBeGreaterThan(0)
   })
 
   it('should successfully get all active plans in plan group w/ freq', async () => {
-    const plansResponse = await loladb.billing.getPlans({
+    const { data, error } = await loladb.billing.getPlans({
       freq: 'monthly',
       groupId: 'loladb.bgrp.KifiX1hf9hCq0tIFXuP',
     })
 
-    expect(plansResponse).toBeTruthy()
-    expect(plansResponse.status).toBe('success')
-    expect(plansResponse.statusCode).toBe(200)
-    expect(plansResponse.data.length).toBe(3)
+    expect(data).toBeTruthy()
+    expect(error).toBeFalsy()
+    expect(data.length).toBe(3)
   })
 
   it('should successfully get all active plans w/ freq', async () => {
-    const plansResponse = await loladb.billing.getPlans({
+    const { data, error } = await loladb.billing.getPlans({
       freq: 'monthly',
     })
 
-    expect(plansResponse).toBeTruthy()
-    expect(plansResponse.status).toBe('success')
-    expect(plansResponse.statusCode).toBe(200)
-    expect(plansResponse.data.length).toBe(3)
+    expect(data).toBeTruthy()
+    expect(data.length).toBe(3)
   })
 
   it('should successfully subscribe an account to a plan', async () => {
+    
     const { data, error } = await loladb.billing.subscribe({
-      accountId: '',
-      planId: 'loladb.bplan.1',
+      accountId: 'lola.acct.892ZJiyOqiArk91Chpl',
+      planId: 'loladb.bpln.0R9ChGhrEpX95mXVSfJZ',
     })
+    
+    expect(data.subscribed).toBeTruthy()
+    expect(error).toBeFalsy()
   })
 })
