@@ -1,3 +1,10 @@
+## <small>1.0.43 (2022-10-14)</small>
+
+* fix: test method ([e18ea0c](https://github.com/loladb/sdk-js/commit/e18ea0c))
+* feat: adds payments methods ([4bfb6d1](https://github.com/loladb/sdk-js/commit/4bfb6d1))
+
+
+
 ## <small>1.0.42 (2022-10-14)</small>
 
 * feat: adds addPaymentMethod ([d129041](https://github.com/loladb/sdk-js/commit/d129041))
