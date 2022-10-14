@@ -1,3 +1,10 @@
+## <small>1.0.42 (2022-10-14)</small>
+
+* feat: adds addPaymentMethod ([d129041](https://github.com/loladb/sdk-js/commit/d129041))
+* wip: payments ([7345296](https://github.com/loladb/sdk-js/commit/7345296))
+
+
+
 ## <small>1.0.41 (2022-10-13)</small>
 
 * fix: fixes billing bug ([3266101](https://github.com/loladb/sdk-js/commit/3266101))
