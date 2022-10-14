@@ -40,7 +40,13 @@ class BillingService {
 
   public async getAccountInvoices(args: any = { accountId: null }) {}
 
-  public async addPaymentMethod(args: any = { accountId: null, paymentMethodId: null }) {}
+  public async createPaymentMethod(args: any = { accountId: null, paymentMethodId: null }) {
+    const { data, error } = await this.api.createPaymentMethod(args)
+    if(!data)
+      return { data: null, error: error }
+
+    return { data: data, error: null }
+  }
 
   public async getPaymentMethods(args: any = { accountId: null }) {}
 
