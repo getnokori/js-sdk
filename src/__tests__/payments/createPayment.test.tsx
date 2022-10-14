@@ -62,7 +62,7 @@ describe('loladb payment method handling', () => {
 
   it('should successfully create a payment method', async () => {
   
-    const { data, error } = await loladb.billing.addPaymentMethod({
+    const { data, error } = await loladb.payments.addPaymentMethod({
       provider: 'stripe',
       paymentMethodDetails: mockCardObject, 
     })
