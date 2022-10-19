@@ -32,6 +32,19 @@ class AuthService {
   protected refreshToken = ''
   protected storage = new StorageService()
   protected autoRefreshSession = false
+  private inauthenticatedResponse = { 
+    data: null, 
+    error: {
+      status: 'unauthorized',
+      redirectTo: '/login',
+    }, 
+  }
+  private authenticatedResponse = {
+    data: { 
+      isAuthenticated: true,      
+    },
+    error: null,
+  }
 
   constructor(HTTPService, settings: any) {
     this.api = new AuthHTTP(HTTPService)
@@ -147,15 +160,9 @@ class AuthService {
 
   async getUser() {
     try {
-      if(!this.user?.userId) {
-        return { 
-          data: null, 
-          error: {
-            status: 'unauthorized',
-            redirectTo: '/login',
-          }, 
-        }
-      }
+      if(!this.user?.userId) 
+        return this.inauthenticatedResponse
+      
       const { data, error } = await this.api.getUser(this.user.userId)
       if(!data)
         return { data: null, error: error }
@@ -165,6 +172,20 @@ class AuthService {
     catch (error) {
       return { data: null, error: error }
     }
+  }
+
+  public async isAuthenticated() {
+    const data = this.storage.getSync(StorageEnums.STORAGE_KEY)
+    if (!data || !data.session) 
+      return this.inauthenticatedResponse
+    
+    const { session } = data
+    const timeNow = Math.round(Date.now() / 1000)
+
+    if (session.expiresAt > timeNow) 
+      return this.authenticatedResponse
+
+    return this.inauthenticatedResponse
   }
 
   private _notify(authEvent: AuthEvents) {
