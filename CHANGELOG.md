@@ -1,3 +1,9 @@
+## <small>1.0.44 (2022-10-19)</small>
+
+* fix: auth state inactive catch ([3b89129](https://github.com/loladb/sdk-js/commit/3b89129))
+
+
+
 ## <small>1.0.43 (2022-10-14)</small>
 
 * fix: test method ([e18ea0c](https://github.com/loladb/sdk-js/commit/e18ea0c))
