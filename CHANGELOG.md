@@ -1,3 +1,9 @@
+## <small>1.0.45 (2022-10-19)</small>
+
+* feat: adds isAuthenticated ([e56bbb9](https://github.com/loladb/sdk-js/commit/e56bbb9))
+
+
+
 ## <small>1.0.44 (2022-10-19)</small>
 
 * fix: auth state inactive catch ([3b89129](https://github.com/loladb/sdk-js/commit/3b89129))
