@@ -147,7 +147,15 @@ class AuthService {
 
   async getUser() {
     try {
-      if(!this.user.userId) throw new Error('No user id found')
+      if(!this.user?.userId) {
+        return { 
+          data: null, 
+          error: {
+            status: 'unauthorized',
+            redirectTo: '/login',
+          }, 
+        }
+      }
       const { data, error } = await this.api.getUser(this.user.userId)
       if(!data)
         return { data: null, error: error }
