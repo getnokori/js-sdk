@@ -1,7 +1,7 @@
 import AuthEvents from '@/enums/auth/authEvents.enum'
 import { uuid } from '@/services/id.util.service'
 import SessionStrategies from '@/enums/auth/authStrategies.enum'
-import AuthHTTP from '@/services/authHttp.service'
+import AuthHTTP from '@/services/auth/authHttp.service'
 import NetworkFailure from '@/enums/auth/network.enum'
 import type Session from '@/types/session.d'
 import type Subscription from '@/types/subscription.d'
@@ -64,6 +64,14 @@ class AuthService {
 
   public async verifyUser(args: any){
     const { data, error } = await this.api.verifyUser(args)
+    if(!data)
+      return { data: null, error: error }
+
+    return { data: data, error: null }
+  }
+
+  public async resendVerificationEmail(args: any){
+    const { data, error } = await this.api.resendVerificationEmail(args)
     if(!data)
       return { data: null, error: error }
 

@@ -3,7 +3,7 @@
 import HTTPService from '@/services/base.http.service'
 import Billing from '@/services/billing/billing.service'
 import Payments from '@/services/payments/payments.service'
-import Auth from '@/services/auth.service'
+import Auth from '@/services/auth/auth.service'
 import Query from '@/services/query.service'
 
 export class LolaDB {

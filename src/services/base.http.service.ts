@@ -42,14 +42,12 @@ class BaseHTTP {
       },
       
       async (error) => {
-        if (axios.isAxiosError(error)) {
-          console.log('error message: ', error.message)
+        if (axios.isAxiosError(error)) 
           return Promise.reject(error)
-        }
-        else {
-          console.log('unexpected error: ', error)
+        
+        else 
           return Promise.reject('An unexpected error occurred')
-        }
+        
       },
     )
       
@@ -62,7 +60,6 @@ class BaseHTTP {
       },
       
       async (error) => {
-        console.log('http error', error)
         return Promise.reject(error.response.data)
         
       },

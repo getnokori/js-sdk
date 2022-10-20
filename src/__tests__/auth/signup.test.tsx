@@ -2,11 +2,12 @@ import LolaDB from '../../index'
 
 const loladb = new LolaDB('lola_pk_prod_YDzGnSnlLt2xnrnXedJ3hjXOWbWzjQAcbtOc')
 
+let verifyRequestToken = ''
 describe('loladb Auth', () => {
   const int = Math.floor(Math.random() * 10000)
   const email = `wes+${int}@loladb.com`
+
   it('should be able to signup', async () => {
-    
     const { data, error } = await loladb.auth.signup({
       email, 
       password: '9j4f19j3d3d9j3d9', 
@@ -16,6 +17,7 @@ describe('loladb Auth', () => {
 
     expect(data).toBeTruthy()
     expect(data.created).toBeTruthy()
+    verifyRequestToken = data.verifyRequestToken
   })
 
   it('should fail due to duplicate email', async () => {
@@ -31,5 +33,15 @@ describe('loladb Auth', () => {
     expect(data).toBeFalsy()
     expect(error.status).toBe('error')
     expect(error.message).toBeDefined()
+  })
+
+  it('should resend the verify account email', async () => {
+    const { data, error } = await loladb.auth.resendVerificationEmail({
+      verifyRequestToken,
+    })
+
+    expect(data).toBeTruthy()
+    expect(data.sent).toBeTruthy()
+    expect(error).toBeFalsy()
   })
 })

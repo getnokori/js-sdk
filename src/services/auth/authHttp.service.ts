@@ -41,6 +41,19 @@ class AuthHTTP {
     }
   }
 
+  public async resendVerificationEmail(args: any): Promise<lolaAPIResponse> {
+    try {
+      const result = await this.httpService.put(`${this.resource}/verify/resend/${args.verifyRequestToken}`)
+      if(result.status === 'error')
+        return { data: null, error: result, statusCode: result.statusCode }
+      
+      return { data: result.data, error: null, statusCode: result.statusCode }
+    }
+    catch (error: any) {
+      return { data: null, error: error }
+    }
+  }
+
   public async login(args: any): Promise<lolaAPIResponse> {
     try{
       const result = await this.httpService.post(`${this.resource}/login`, args)
