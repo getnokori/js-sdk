@@ -1,3 +1,9 @@
+## <small>1.0.46 (2022-10-20)</small>
+
+* feat: adds resend verify email ([b0c8d3b](https://github.com/loladb/sdk-js/commit/b0c8d3b))
+
+
+
 ## <small>1.0.45 (2022-10-19)</small>
 
 * feat: adds isAuthenticated ([e56bbb9](https://github.com/loladb/sdk-js/commit/e56bbb9))
