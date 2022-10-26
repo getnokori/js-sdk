@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "build-ts": "tsc -p ./tsconfig.json",
-    "changelog": "conventional-changelog -p node -i CHANGELOG.md -s",
+    "changelog": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s",
     "lint": "eslint . --ext .ts --quiet",
     "release": "npm run build && bumpp -x \"npm run changelog\" --all --commit --tag --push && npm publish",
     "clean": "rimraf dist",
