@@ -26,10 +26,10 @@ class BaseHTTP {
 
   private _setAPIUrl(apiToken){
     if(apiToken.includes('_test_'))
-      this.baseURL = 'http://api.qa.loladb.com/v1'
+      this.baseURL = 'https://api.qa.loladb.com/v1'
     
     else if(apiToken.includes('_prod_'))
-      this.baseURL = 'http://api.loladb.com/v1'
+      this.baseURL = 'https://api.loladb.com/v1'
   
   }
 
