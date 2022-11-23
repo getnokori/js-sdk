@@ -1,3 +1,18 @@
+### [1.0.47](https://github.com/loladb/sdk-js/compare/v1.0.46...v1.0.47) (2022-11-23)
+
+
+### Features
+
+* adds qa branch ([f4ea80a](https://github.com/loladb/sdk-js/commit/f4ea80aa8410753ea3a438e560a89fe316156a15))
+* dynamic api endpoint ([0d27352](https://github.com/loladb/sdk-js/commit/0d27352350e0621f60563354301415d9ab36d96c))
+
+
+### Bug Fixes
+
+* adds module exports ([2e469e4](https://github.com/loladb/sdk-js/commit/2e469e44fc3d9d5b925de6fb93eaf1c1e5ec2cd6))
+* package.json ([16a32a7](https://github.com/loladb/sdk-js/commit/16a32a77cbbce9f9130a62d3aae52d28141b2e4b))
+* updates changelog ([6259ab9](https://github.com/loladb/sdk-js/commit/6259ab9b1e2bfb045c766ed48a421b5fae1798e7))
+
 ## <small>1.0.46 (2022-10-20)</small>
 
 * feat: adds resend verify email ([b0c8d3b](https://github.com/loladb/sdk-js/commit/b0c8d3b))
