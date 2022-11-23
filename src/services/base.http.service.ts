@@ -5,13 +5,14 @@ import StorageEnums from '@/enums/storage/storage.enum'
 
 class BaseHTTP {
   protected apiToken: string
-  protected baseURL = 'http://127.0.0.1:4777/v1'
+  protected baseURL: string = ''
   public repository
   protected bearerToken: string | null = null
   protected storage = new StorageService()
 
   constructor(apiToken: string) {
     this.apiToken = apiToken
+    this._setAPIUrl(apiToken)
     this.repository = axios.create({
       baseURL: this.baseURL,
       headers: {
@@ -21,6 +22,15 @@ class BaseHTTP {
     })
 
     this.init()
+  }
+
+  private _setAPIUrl(apiToken){
+    if(apiToken.includes('_test_'))
+      this.baseURL = 'http://api.qa.loladb.com/v1'
+    
+    else if(apiToken.includes('_prod_'))
+      this.baseURL = 'http://api.loladb.com/v1'
+  
   }
 
   public init = () => {
