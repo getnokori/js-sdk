@@ -33,4 +33,12 @@ const {data, error} = await loladb.query({
 })
 ```
 
+### Supported Databases
+
+We currently support these major databases (with many more on the way):
+
+- Postgres
+- MySQL
+- MariaDB
+
 ### More to come...
