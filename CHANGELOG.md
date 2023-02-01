@@ -1,3 +1,10 @@
+### [1.0.54](https://github.com/loladb/sdk-js/compare/v1.0.53...v1.0.54) (2023-02-01)
+
+
+### Features
+
+* adds auto-build test ([7474e3a](https://github.com/loladb/sdk-js/commit/7474e3afae70b4b298724fcdd0a9de138b0bd4b7))
+
 ### [1.0.53](https://github.com/loladb/sdk-js/compare/v1.0.52...v1.0.53) (2023-02-01)
 
 ### [1.0.52](https://github.com/loladb/sdk-js/compare/v1.0.51...v1.0.52) (2023-02-01)
