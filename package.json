@@ -1,6 +1,6 @@
 {
   "name": "@loladb/sdk-js",
-  "version": "1.0.51",
+  "version": "1.0.52",
   "description": "LolaDB Node.JS js/ts sdk",
   "type": "module",
   "files": [
@@ -75,5 +75,17 @@
     "dotenv": "^16.0.2",
     "nanoid": "^3.3.4"
   },
-  "keywords" : ["express", "loladb", "mysql", "mysql2", "fastify", "hapi", "sequelize", "postgres", "pg", "mariadb", "maria"]
+  "keywords": [
+    "express",
+    "loladb",
+    "mysql",
+    "mysql2",
+    "fastify",
+    "hapi",
+    "sequelize",
+    "postgres",
+    "pg",
+    "mariadb",
+    "maria"
+  ]
 }
