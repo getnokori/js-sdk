@@ -1,3 +1,10 @@
+### [1.0.57](https://github.com/loladb/sdk-js/compare/v1.0.56...v1.0.57) (2023-02-03)
+
+
+### Bug Fixes
+
+* endpoint execute ([f2ae376](https://github.com/loladb/sdk-js/commit/f2ae376bb7b1002f3deb04cd8139be03e8de3fb5))
+
 ### [1.0.56](https://github.com/loladb/sdk-js/compare/v1.0.55...v1.0.56) (2023-02-03)
 
 
