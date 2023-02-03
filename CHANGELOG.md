@@ -1,3 +1,10 @@
+### [1.0.56](https://github.com/loladb/sdk-js/compare/v1.0.55...v1.0.56) (2023-02-03)
+
+
+### Bug Fixes
+
+* ssr window init ([cbbe0c9](https://github.com/loladb/sdk-js/commit/cbbe0c9a5d789177889a11764d762276297d0426))
+
 ### [1.0.55](https://github.com/loladb/sdk-js/compare/v1.0.53...v1.0.55) (2023-02-03)
 
 
