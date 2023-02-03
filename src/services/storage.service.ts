@@ -1,16 +1,18 @@
+import MockStorage from './storage/localStorage'
 
 class BrowserStorage {
-  private store: Pick<Storage, 'getItem' | 'setItem' | 'removeItem' | 'clear'>
+  private store: Pick<Storage, 'getItem' | 'setItem' | 'removeItem' | 'clear'> 
+  | Pick<MockStorage, 'getItem' | 'setItem' | 'removeItem' | 'clear'>
 
   constructor() {
-    if(!window) throw new Error('window is not defined')
-    this.store = window.localStorage
+    // if(!window) throw new Error('window is not defined')
+    this.store = window?.localStorage || MockStorage
   }
 
-  private _isBrowser = () => typeof window !== 'undefined'
+  // private _isBrowser = () => typeof window !== 'undefined'
   
   async get(key: string): Promise<any | null>{
-    const value = this._isBrowser() && (await this.store?.getItem(key))
+    const value = await this.store?.getItem(key)
     if (!value) return null
     try {
       return JSON.parse(value)
@@ -21,7 +23,7 @@ class BrowserStorage {
   }
 
   getSync(key: string): any | null {
-    const value = this._isBrowser() && this.store?.getItem(key)
+    const value = this.store?.getItem(key)
     if (!value || typeof value !== 'string') 
       return null
   
@@ -34,21 +36,21 @@ class BrowserStorage {
   }
 
   async set(key: string, value: any): Promise<void> {
-    this._isBrowser() && (await this.store?.setItem(key, JSON.stringify(value)))
+    await this.store?.setItem(key, JSON.stringify(value))
   }
 
   setSync(key: string, value: any){
-    this._isBrowser() && (this.store?.setItem(key, JSON.stringify(value)))
+    this.store?.setItem(key, JSON.stringify(value))
     return this
   }
 
   async remove(key: string): Promise<this> {
-    this._isBrowser() && (await this.store?.removeItem(key))
+    await this.store?.removeItem(key)
     return this
   }
 
   async clear() {
-    return await this._isBrowser() && (this.store.clear())
+    return await this.store.clear()
   }
 }
 

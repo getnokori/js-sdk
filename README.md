@@ -15,8 +15,8 @@ npm i @loladb/sdk-js
 Import and initialize the SDK.
 
 ```js
-import { LolaDB } from "@loladb/sdk-js";
-const loladb = new LolaDB('<<API_KEY>>')
+import LolaDB from "@loladb/sdk-js";
+const lola = new LolaDB('<<API_KEY>>')
 ```
 
 ### Querying
@@ -24,7 +24,7 @@ const loladb = new LolaDB('<<API_KEY>>')
 Query a database after setting it up in the [lolaDB App](https://app.loladb.com).
 
 ```js
-const {data, error} = await loladb.query({
+const {data, error} = await lola.query.execute({
   queryId: 'lola.q.-ddqHfqeZNihbChcAbf',
   context: {
     created_at: '2022-01-01',
