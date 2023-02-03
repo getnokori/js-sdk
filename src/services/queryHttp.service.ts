@@ -10,7 +10,7 @@ class QueryHTTP {
 
   public async execute(args: any): Promise<AuthAPIResponse> {
     try {
-      const result = await this.httpService.post(`${this.resource}/exec`, args)
+      const result = await this.httpService.post(`${this.resource}/execute`, args)
       if(result.status === 'error')
         return { data: null, error: result, statusCode: result.statusCode }
       
