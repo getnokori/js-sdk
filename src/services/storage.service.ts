@@ -6,7 +6,7 @@ class BrowserStorage {
 
   constructor() {
     // if(!window) throw new Error('window is not defined')
-    this.store = window?.localStorage || MockStorage
+    this.store = typeof window !== 'undefined' ? window.localStorage : new MockStorage()
   }
 
   // private _isBrowser = () => typeof window !== 'undefined'
