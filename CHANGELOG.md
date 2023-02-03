@@ -1,3 +1,15 @@
+### [1.0.54](https://github.com/loladb/sdk-js/compare/v1.0.53...v1.0.54) (2023-02-03)
+
+
+### Features
+
+* adds localStorage mock for ssr ([78a59c2](https://github.com/loladb/sdk-js/commit/78a59c24a35793d9833dc97cd339b8a6360efbdf))
+
+
+### Bug Fixes
+
+* readme ([6b43132](https://github.com/loladb/sdk-js/commit/6b431326cc9762a33babe5db40ea6ec6291d84b5))
+
 ### [1.0.53](https://github.com/loladb/sdk-js/compare/v1.0.52...v1.0.53) (2023-02-01)
 
 ### [1.0.52](https://github.com/loladb/sdk-js/compare/v1.0.51...v1.0.52) (2023-02-01)
