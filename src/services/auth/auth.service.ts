@@ -100,6 +100,7 @@ class AuthService {
           accountId: data.session.accountId,
           userId: data.session.userId,
         }, 
+        meta: { ...data.meta },
       },
       error: null, 
     }
