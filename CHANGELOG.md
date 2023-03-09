@@ -1,3 +1,10 @@
+### [1.0.59](https://github.com/loladb/sdk-js/compare/v1.0.58...v1.0.59) (2023-03-09)
+
+
+### Features
+
+* adds meta to login response ([2dba97b](https://github.com/loladb/sdk-js/commit/2dba97b2ba4c665a57a5b24fe7df68dbf373f2c7))
+
 ### [1.0.58](https://github.com/loladb/sdk-js/compare/v1.0.57...v1.0.58) (2023-02-03)
 
 ### [1.0.57](https://github.com/loladb/sdk-js/compare/v1.0.56...v1.0.57) (2023-02-03)
