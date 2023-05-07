@@ -1,11 +1,9 @@
-import LolaDB from '../../index'
+import { auth } from '../../index'
 import 'jest-localstorage-mock'
-
-const loladb = new LolaDB('lola_pk_prod_YDzGnSnlLt2xnrnXedJ3hjXOWbWzjQAcbtOc')
 
 describe('loladb Auth', () => {
   it('should log a user in successfully', async () => {
-    const { data, error } = await loladb.auth.login({
+    const { data, error } = await auth.login({
       strategy: 'password',
       email: 'wes+2788@loladb.com',
       password: '9j4f19j3d3d9j3d9',

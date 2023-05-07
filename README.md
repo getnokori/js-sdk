@@ -1,13 +1,13 @@
-# @loladb/sdk-js
+# @nokori/js-sdk
 
-Official JavaScript SDK for [LolaDB](https://loladb.com).
+Official JavaScript SDK for [nokori](https://nokori.com).
 
 ## The basics
 
 ### Installation
 
 ```bash
-npm i @loladb/sdk-js
+npm i @nokori/js-sdk
 ```
 
 ### Usage
@@ -15,17 +15,16 @@ npm i @loladb/sdk-js
 Import and initialize the SDK.
 
 ```js
-import { LolaDB } from "@loladb/sdk-js";
-const loladb = new LolaDB('<<API_KEY>>')
+import { query } from "@nokori/js-sdk";
 ```
 
 ### Querying
 
-Query a database after setting it up in the [lolaDB App](https://app.loladb.com).
+Query a database after setting it up in the [nokori App](https://app.nokori.com).
 
 ```js
-const {data, error} = await loladb.query({
-  queryId: 'lola.q.-ddqHfqeZNihbChcAbf',
+const {data, error} = await query({
+  queryId: 'nk.q.-ddqHfqeZNihbChcAbf',
   context: {
     created_at: '2022-01-01',
     status: 'active'
@@ -33,12 +32,11 @@ const {data, error} = await loladb.query({
 })
 ```
 
-### Supported Databases
+### Supported Data Sources
 
-We currently support these major databases (with many more on the way):
+We currently support these sources:
 
+- HTTP (REST) API Endpoints
 - Postgres
 - MySQL
 - MariaDB
-
-### More to come...

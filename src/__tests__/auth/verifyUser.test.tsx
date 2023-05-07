@@ -1,10 +1,8 @@
-import LolaDB from '../../index'
-
-const loladb = new LolaDB('lola_pk_prod_YDzGnSnlLt2xnrnXedJ3hjXOWbWzjQAcbtOc')
+import { auth } from '../../index'
 
 describe('loladb Auth', () => {
   it('should validate user account with token', async () => {
-    const { data, error } = await loladb.auth.verifyUser({
+    const { data, error } = await auth.verifyUser({
       verifyToken: '-YFKl42KmTiBrodHxedQoLcsAj',
     })
 

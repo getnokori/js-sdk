@@ -1,7 +1,7 @@
 {
-  "name": "@loladb/sdk-js",
+  "name": "@nokori/js-sdk",
   "version": "1.0.54",
-  "description": "LolaDB Node.JS js/ts sdk",
+  "description": "nokori Node.JS TS SDK",
   "type": "module",
   "files": [
     "dist"
@@ -29,14 +29,14 @@
   "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/loladb/sdk-js.git"
+    "url": "git+https://github.com/nokori/sdk-js.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/loladb/sdk-js/issues"
+    "url": "https://github.com/nokori/sdk-js/issues"
   },
-  "homepage": "https://loladb.com",
+  "homepage": "https://nokori.com",
   "devDependencies": {
     "@swc/core": "^1.3.2",
     "@swc/jest": "^0.2.23",
@@ -77,7 +77,7 @@
   },
   "keywords": [
     "express",
-    "loladb",
+    "nokori",
     "mysql",
     "mysql2",
     "fastify",

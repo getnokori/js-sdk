@@ -6,7 +6,7 @@ import Payments from '@/services/payments/payments.service'
 import Auth from '@/services/auth/auth.service'
 import Query from '@/services/query.service'
 
-export class LolaDB {
+export class nokori {
   public _apiToken: string
   public auth: Auth
   public billing: Billing
@@ -33,4 +33,15 @@ export class LolaDB {
   }
 }
 
-export default LolaDB
+const apiToken = process.env.NOKORI_API_KEY
+const nkInstance = apiToken ? new nokori(apiToken) : null
+
+export const auth = nkInstance?.auth
+export const billing = nkInstance?.billing
+export const payments = nkInstance?.payments
+export const http = nkInstance?.http
+export const query = nkInstance?.query
+
+export default function Nokori(apiToken: string) {
+  return new nokori(apiToken)
+}
