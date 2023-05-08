@@ -1,19 +1,18 @@
-import LolaDB from '../../index'
-
-const loladb = new LolaDB('lola_pk_prod_YDzGnSnlLt2xnrnXedJ3hjXOWbWzjQAcbtOc')
+import nokori from '../../index'
+const nk = new nokori('lola_pk_prod_YDzGnSnlLt2xnrnXedJ3hjXOWbWzjQAcbtOc')
 
 beforeAll(async () => {
-  await loladb.auth.login({
+  await nk.auth.login({
     strategy: 'password',
-    email: 'wes+2788@loladb.com',
+    email: 'wes+2788@nokori.com',
     password: '9j4f19j3d3d9j3d9',
   })
 })
 
-describe('loladb Billing', () => {
+describe('Nokori Billing', () => {
   
   it('should successfully get all active plans', async () => {
-    const { data, error } = await loladb.billing.getPlans()
+    const { data, error } = await nk.billing.getPlans()
 
     expect(data).toBeTruthy()
     expect(error).toBeFalsy()
@@ -21,7 +20,7 @@ describe('loladb Billing', () => {
   })
 
   it('should successfully get all active plans in plan group', async () => {
-    const { data, error } = await loladb.billing.getPlans({
+    const { data, error } = await nk.billing.getPlans({
       groupId: 'loladb.bgrp.KifiX1hf9hCq0tIFXuP',
     })
 
@@ -31,7 +30,7 @@ describe('loladb Billing', () => {
   })
 
   it('should successfully get all active plans in plan group w/ freq', async () => {
-    const { data, error } = await loladb.billing.getPlans({
+    const { data, error } = await nk.billing.getPlans({
       freq: 'monthly',
       groupId: 'loladb.bgrp.KifiX1hf9hCq0tIFXuP',
     })

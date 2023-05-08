@@ -26,10 +26,10 @@ class BaseHTTP {
 
   private _setAPIUrl(apiToken){
     if(apiToken.includes('_test_'))
-      this.baseURL = 'https://api.qa.loladb.com/v1'
+      this.baseURL = 'https://api.qa.nokori.com/v1'
     
     else if(apiToken.includes('_prod_'))
-      this.baseURL = 'https://api.loladb.com/v1'
+      this.baseURL = 'https://api.nokori.com/v1'
   
   }
 
@@ -37,7 +37,7 @@ class BaseHTTP {
     this.repository.interceptors.request.use(
       async (config) => {
         try {
-          config.headers[HTTPHeaders.LOLADB_API_KEY] = this.apiToken
+          config.headers[HTTPHeaders.NOKORI_API_KEY] = this.apiToken
 
           const data = await this.storage.get(StorageEnums.STORAGE_KEY)
           if(data?.session?.accessToken)

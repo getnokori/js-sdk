@@ -1,16 +1,15 @@
-import LolaDB from '../../index'
-
-const loladb = new LolaDB('lola_pk_prod_YDzGnSnlLt2xnrnXedJ3hjXOWbWzjQAcbtOc')
+import nokori from '../../index'
+const nk = new nokori('lola_pk_prod_YDzGnSnlLt2xnrnXedJ3hjXOWbWzjQAcbtOc')
 
 beforeAll(async () => {
-  await loladb.auth.login({
+  await nk.auth.login({
     strategy: 'password',
-    email: 'wes+2788@loladb.com',
+    email: 'wes+2788@nokori.com',
     password: '9j4f19j3d3d9j3d9',
   })
 })
 
-describe('loladb payment method handling', () => {
+describe('nokori payment method handling', () => {
   
   // `PaymentMethod` Object from stripe as documented: https://stripe.com/docs/api/payment_methods/object
   // Generated from Stripe JS SDK: https://stripe.com/docs/js/payment_methods/create_payment_method
@@ -62,7 +61,7 @@ describe('loladb payment method handling', () => {
 
   it('should successfully create a payment method', async () => {
   
-    const { data, error } = await loladb.payments.createPaymentMethod({
+    const { data, error } = await nk.payments.createPaymentMethod({
       provider: 'stripe',
       paymentMethodDetails: mockCardObject, 
     })

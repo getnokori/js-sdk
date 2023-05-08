@@ -1,10 +1,9 @@
-import LolaDB from '../../index'
+import nokori from '../../index'
+const nk = new nokori('lola_pk_prod_YDzGnSnlLt2xnrnXedJ3hjXOWbWzjQAcbtOc')
 
-const loladb = new LolaDB('lola_pk_prod_YDzGnSnlLt2xnrnXedJ3hjXOWbWzjQAcbtOc')
-
-describe('loladb Auth', () => {
+describe('nokori Auth', () => {
   it('should validate user account with token', async () => {
-    const { data, error } = await loladb.auth.verifyUser({
+    const { data, error } = await nk.auth.verifyUser({
       verifyToken: '-YFKl42KmTiBrodHxedQoLcsAj',
     })
 

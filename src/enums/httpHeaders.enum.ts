@@ -1,5 +1,5 @@
 enum HTTPHeaders {
-  LOLADB_API_KEY = 'x-loladb-api-key',
+  NOKORI_API_KEY = 'x-nokori-api-key',
   AUTHORIZATION = 'Authorization',
 }
 

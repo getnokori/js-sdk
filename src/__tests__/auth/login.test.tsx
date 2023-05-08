@@ -1,13 +1,14 @@
-import LolaDB from '../../index'
+import nokori from '../../index'
+const nk = new nokori('lola_pk_test_TAKPkYzqUdhu3gg-weJe0P2hm8Jcg2RPXXkg')
+
 import 'jest-localstorage-mock'
+import StorageEnums from '../../enums/storage/storage.enum'
 
-const loladb = new LolaDB('lola_pk_prod_YDzGnSnlLt2xnrnXedJ3hjXOWbWzjQAcbtOc')
-
-describe('loladb Auth', () => {
+describe('nokori Auth', () => {
   it('should log a user in successfully', async () => {
-    const { data, error } = await loladb.auth.login({
+    const { data, error } = await nk.auth.login({
       strategy: 'password',
-      email: 'wes+2788@loladb.com',
+      email: 'wes+283@nokori.com',
       password: '9j4f19j3d3d9j3d9',
     })
 
@@ -22,8 +23,8 @@ describe('loladb Auth', () => {
     expect(error).toBeFalsy()
     expect(data.redirectTo).toEqual('/')
 
-    expect(localStorage.getItem('loladb.auth')).toBeTruthy()
-    const liSession = JSON.parse(localStorage.getItem('loladb.auth') || '')
+    expect(localStorage.getItem(StorageEnums.STORAGE_KEY)).toBeTruthy()
+    const liSession = JSON.parse(localStorage.getItem(StorageEnums.STORAGE_KEY) || '')
 
     expect(liSession).toHaveProperty('session')
     expect(liSession.session).toHaveProperty('accessToken')
@@ -39,7 +40,7 @@ describe('loladb Auth', () => {
   })
 
   it('Should get the user object successfully', async()=>{
-    const { data, error } = await loladb.auth.getUser()
+    const { data, error } = await nk.auth.getUser()
 
     expect(data).toBeTruthy()
     expect(error).toBeFalsy()
@@ -55,14 +56,14 @@ describe('loladb Auth', () => {
   })
 
   it('Should successfully log a user out', async () => {
-    expect(localStorage.getItem('loladb.auth')).toBeTruthy()
-    const liSession = JSON.parse(localStorage.getItem('loladb.auth') || '')
+    expect(localStorage.getItem(StorageEnums.STORAGE_KEY)).toBeTruthy()
+    const liSession = JSON.parse(localStorage.getItem(StorageEnums.STORAGE_KEY) || '')
     expect(liSession).toHaveProperty('session')
     expect(liSession.session).toHaveProperty('accessToken')
 
-    const { data, error } = await loladb.auth.logout()
+    const { data, error } = await nk.auth.logout()
 
-    expect(localStorage.getItem('loladb.auth')).toBeFalsy()
+    expect(localStorage.getItem(StorageEnums.STORAGE_KEY)).toBeFalsy()
     expect(data.redirectTo).toEqual('/login')
   })
 })

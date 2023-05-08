@@ -56,6 +56,7 @@ class AuthService {
 
   public async signup(args: any) {
     const { data, error } = await this.api.signup(args)
+    console.log(data, error)
     if(!data)
       return { data: null, error: error }
 

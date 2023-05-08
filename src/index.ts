@@ -6,7 +6,7 @@ import Payments from '@/services/payments/payments.service'
 import Auth from '@/services/auth/auth.service'
 import Query from '@/services/query.service'
 
-export class LolaDB {
+export class nokori {
   public _apiToken: string
   public auth: Auth
   public billing: Billing
@@ -33,4 +33,4 @@ export class LolaDB {
   }
 }
 
-export default LolaDB
+export default nokori
