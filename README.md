@@ -37,7 +37,7 @@ async function create(formData: FormData){
  const { data, error } = await nk.query.execute({
     queryId: 'nk.q.-ddqHfqeZNihbChcAbf', //Global Cloud Query ID
       context: {
-        name: formDate.get('name')
+        name: formData.get('name')
       } 
     }
   )
