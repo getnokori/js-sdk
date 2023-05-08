@@ -90,7 +90,18 @@
     "postgres",
     "pg",
     "mariadb",
-    "maria"
+    "maria",
+    "react",
+    "reactjs",
+    "vue",
+    "nextjs",
+    "next",
+    "nuxt",
+    "svelte",
+    "angular",
+    "API",
+    "database",
+    "firebase"
   ],
   "publishConfig": {
     "access": "public"
