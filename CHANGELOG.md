@@ -1,3 +1,5 @@
+### [1.0.65](https://github.com/loladb/sdk-js/compare/v1.0.64...v1.0.65) (2023-05-08)
+
 ### [1.0.64](https://github.com/loladb/sdk-js/compare/v1.0.63...v1.0.64) (2023-05-08)
 
 
