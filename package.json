@@ -1,6 +1,6 @@
 {
-  "name": "@loladb/sdk-js",
-  "version": "1.0.60",
+  "name": "@loladb/js-sdk",
+  "version": "1.0.61",
   "description": "LolaDB Node.JS js/ts sdk",
   "type": "module",
   "files": [
