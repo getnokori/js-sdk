@@ -1,6 +1,6 @@
 {
   "name": "@nokori/js-sdk",
-  "version": "1.0.67",
+  "version": "1.0.68",
   "description": "LolaDB Node.JS js/ts sdk",
   "type": "module",
   "files": [

@@ -1,3 +1,10 @@
+### [1.0.68](https://github.com/loladb/sdk-js/compare/v1.0.67...v1.0.68) (2023-05-08)
+
+
+### Bug Fixes
+
+* readme example ([8958c18](https://github.com/loladb/sdk-js/commit/8958c184e393ab4453644d96d08446bb0102549b))
+
 ### [1.0.67](https://github.com/loladb/sdk-js/compare/v1.0.66...v1.0.67) (2023-05-08)
 
 ### [1.0.66](https://github.com/loladb/sdk-js/compare/v1.0.65...v1.0.66) (2023-05-08)
