@@ -1,6 +1,6 @@
 {
   "name": "@nokori/js-sdk",
-  "version": "1.0.62",
+  "version": "1.0.63",
   "description": "LolaDB Node.JS js/ts sdk",
   "type": "module",
   "files": [
@@ -77,15 +77,22 @@
   },
   "keywords": [
     "express",
-    "loladb",
+    "nokori",
     "mysql",
     "mysql2",
     "fastify",
     "hapi",
+    "rest",
+    "api",
+    "axios",
+    "elasticsearch",
     "sequelize",
     "postgres",
     "pg",
     "mariadb",
     "maria"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
