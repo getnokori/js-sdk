@@ -5,6 +5,7 @@ import Billing from '@/services/billing/billing.service'
 import Payments from '@/services/payments/payments.service'
 import Auth from '@/services/auth/auth.service'
 import Query from '@/services/query.service'
+import AIService from '@/services/ai/ai.service'
 
 export class nokori {
   public _apiToken: string
@@ -12,6 +13,7 @@ export class nokori {
   public billing: Billing
   public payments: Payments
   public http
+  public ai: AIService
   public query: Query
 
   constructor (apiToken: string) {
@@ -22,6 +24,7 @@ export class nokori {
     this.auth = new Auth(this.http, { autoRefreshSession: true })
     this.billing = new Billing(this.http, {})
     this.payments = new Payments(this.http, {})
+    this.ai = new AIService(this.http, {})
     
     this.auth.on('LOGGED_IN', (session) => {
       if(!session?.accountId) return
