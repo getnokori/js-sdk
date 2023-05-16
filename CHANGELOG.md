@@ -1,3 +1,10 @@
+## [1.1.0](https://github.com/loladb/sdk-js/compare/v1.0.68...v1.1.0) (2023-05-16)
+
+
+### Features
+
+* adds generate and summarize v1 ([5d07fac](https://github.com/loladb/sdk-js/commit/5d07facd12b22abbabd437c57e3da8919ee1f8ff))
+
 ### [1.0.68](https://github.com/loladb/sdk-js/compare/v1.0.67...v1.0.68) (2023-05-08)
 
 
