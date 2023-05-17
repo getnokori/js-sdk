@@ -1,7 +1,7 @@
 {
   "name": "@nokori/js-sdk",
   "version": "1.1.1",
-  "description": "LolaDB Node.JS js/ts sdk",
+  "description": "nokori Node.JS js/ts sdk",
   "type": "module",
   "files": [
     "dist"
@@ -29,12 +29,12 @@
   "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/loladb/sdk-js.git"
+    "url": "git+https://github.com/getnokori/js-sdk.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/loladb/sdk-js/issues"
+    "url": "https://github.com/getnokori/js-sdk/issues"
   },
   "homepage": "https://loladb.com",
   "devDependencies": {
@@ -101,7 +101,8 @@
     "angular",
     "API",
     "database",
-    "firebase"
+    "firebase",
+    "chatGPT"
   ],
   "publishConfig": {
     "access": "public"
