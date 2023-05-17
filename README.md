@@ -83,13 +83,13 @@ const {data, error} = await nk.query.execute({
 })
 ```
 
-### nokori AI
+## nokori AI
 
 nokori AI is state of the art that is easy to use and simple to integrate.
 
 We're helping organizations of all sizes integrate common data flows and usecases and rapidly turn them in to AI powered intelligence embeddable in any application.
 
-#### Basic AI Example
+### Basic AI Example
 
 As seen in our [full docs](https://docs.nokori.com/guides/generate/), a common problem of current Large Language Models (LLM) is the tendency to 'hallucinate' or generate text that is not relevant to the prompt.
 
