@@ -1,3 +1,10 @@
+### [1.1.3](https://github.com/getnokori/js-sdk/compare/v1.1.2...v1.1.3) (2023-05-17)
+
+
+### Bug Fixes
+
+* readme ([8530e63](https://github.com/getnokori/js-sdk/commit/8530e639364cc7d2b990ec07fc74f68850d694d5))
+
 ### [1.1.2](https://github.com/getnokori/js-sdk/compare/v1.1.1...v1.1.2) (2023-05-17)
 
 
