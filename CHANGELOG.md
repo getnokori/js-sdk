@@ -1,3 +1,10 @@
+### [1.1.2](https://github.com/getnokori/js-sdk/compare/v1.1.1...v1.1.2) (2023-05-17)
+
+
+### Bug Fixes
+
+* docs ([7fcda59](https://github.com/getnokori/js-sdk/commit/7fcda5908735aec045c0cacc6c008606e28d7c9a))
+
 ### [1.1.1](https://github.com/loladb/sdk-js/compare/v1.1.0...v1.1.1) (2023-05-16)
 
 ## [1.1.0](https://github.com/loladb/sdk-js/compare/v1.0.68...v1.1.0) (2023-05-16)
