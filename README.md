@@ -123,3 +123,34 @@ const { data, error } = await nk.ai.generate({
 The same example could be leveraged for organizations that had a large document corpus in an ElasticSearch index, for example, allowing their existing ES queries to fetch relevant documents and then generate a human-like response to the user based on those docs.
 
 [Read the docs](https://docs.nokori.com/guides/generate/) for more.
+
+## Classifiers
+
+nokori offers cloud-native programmable text classifiers that are breathlessly easy to use. Incrementally trainable in the cloud, you can train a classifier instantly and skip the infrastructure and training data management.
+
+```js
+const { data, error } = await nk.classifiers.create({
+  name: 'Hot Dog Classifier',
+})
+
+// classifierId: nk.clfr.******************
+```
+
+```js
+const { data, error } = await nk.classifiers.train({
+  classifierId: 'nk.clfr.******************',
+  label: 'hot dog',
+  context: 'two buns with meat in the middle',
+})
+```
+
+```js
+const { data, error } = await nk.classifiers.predict({
+  classifierId: 'nk.clfr.******************',
+  context: 'two buns with meat in the middle',
+})
+
+// label: 'hot dog'
+```
+
+Read the full [Classifier docs](https://docs.nokori.com/guides/classifiers/) for more.

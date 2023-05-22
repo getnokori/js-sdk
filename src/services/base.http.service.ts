@@ -25,11 +25,13 @@ class BaseHTTP {
   }
 
   private _setAPIUrl(apiToken){
-    if(apiToken.includes('_test_'))
-      this.baseURL = 'https://api.qa.nokori.com/v1'
+    // if(apiToken.includes('_test_'))
+    //   this.baseURL = 'https://api.qa.nokori.com/v1'
     
-    else if(apiToken.includes('_prod_'))
-      this.baseURL = 'https://api.nokori.com/v1'
+    // else if(apiToken.includes('_prod_'))
+    //   this.baseURL = 'https://api.nokori.com/v1'
+  
+    this.baseURL = 'http://localhost:4777/v1'
   
   }
 

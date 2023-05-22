@@ -2,6 +2,7 @@
 
 import HTTPService from '@/services/base.http.service'
 import Billing from '@/services/billing/billing.service'
+import Classifiers from '@/services/classifiers/classifiers.service'
 import Payments from '@/services/payments/payments.service'
 import Auth from '@/services/auth/auth.service'
 import Query from '@/services/query.service'
@@ -11,6 +12,7 @@ export class nokori {
   public _apiToken: string
   public auth: Auth
   public billing: Billing
+  public classifiers: Classifiers
   public payments: Payments
   public http
   public ai: AIService
@@ -23,6 +25,7 @@ export class nokori {
 
     this.auth = new Auth(this.http, { autoRefreshSession: true })
     this.billing = new Billing(this.http, {})
+    this.classifiers = new Classifiers(this.http, {})
     this.payments = new Payments(this.http, {})
     this.ai = new AIService(this.http, {})
     
