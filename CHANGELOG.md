@@ -1,3 +1,10 @@
+### [1.2.1](https://github.com/getnokori/js-sdk/compare/v1.2.0...v1.2.1) (2023-05-22)
+
+
+### Features
+
+* adds getOne, getMany, delete classifiiers. ([0c3b46e](https://github.com/getnokori/js-sdk/commit/0c3b46e23e5c3f82db13fd29e258fcc46317a900))
+
 ## [1.2.0](https://github.com/getnokori/js-sdk/compare/v1.1.3...v1.2.0) (2023-05-22)
 
 
