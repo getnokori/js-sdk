@@ -1,3 +1,10 @@
+## [1.2.0](https://github.com/getnokori/js-sdk/compare/v1.1.3...v1.2.0) (2023-05-22)
+
+
+### Features
+
+* adds classifiers ([926c2b0](https://github.com/getnokori/js-sdk/commit/926c2b09cf87cdb426ffb2dff71147c5abc45eb6))
+
 ### [1.1.3](https://github.com/getnokori/js-sdk/compare/v1.1.2...v1.1.3) (2023-05-17)
 
 
