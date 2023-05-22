@@ -5,6 +5,8 @@ import nokori from '../../index'
 const nk = new nokori('lola_pk_prod_ZsbfD2gAMB6T8hZMFdTzNSwMeTR5wAXtuxC1')
 
 describe('Classifiers', () => {
+  let classifierId = ''
+
   it('Should create a classifier', async () => {
     const { data, error } = await nk.classifiers.create({
       name: 'Jest Test Classifier',
@@ -12,11 +14,32 @@ describe('Classifiers', () => {
 
     expect(error).toBe(null)
     expect(data).toHaveProperty('id')
+
+    classifierId = data.id
+  })
+
+  it('Should get all classifiers', async () => {
+    const { data, error } = await nk.classifiers.getMany()
+
+    expect(error).toBe(null)
+    expect(data).toBeTruthy()
+  })
+
+  it('Should get a classifier', async () => {
+    const { data, error } = await nk.classifiers.getOne({
+      classifierId,
+    })
+
+    expect(error).toBe(null)
+    expect(data).toBeTruthy()
+    expect(data).toHaveProperty('classifierId')
+    expect(data).toHaveProperty('name')
+    expect(data).toHaveProperty('classes')
   })
 
   it('Should train a classifier', async () => {
     const { data, error } = await nk.classifiers.train({
-      classifierId: 'nk.clfr.14xRyjyvtnGhquMr4to',
+      classifierId,
       label: 'hot dog',
       context: 'two buns with meat in the middle',
     })
@@ -29,7 +52,7 @@ describe('Classifiers', () => {
 
   it('Should predict a class', async () => {
     const { data, error } = await nk.classifiers.predict({
-      classifierId: 'nk.clfr.14xRyjyvtnGhquMr4to',
+      classifierId,
       context: 'two buns with meat in the middle',
     })
 
@@ -38,5 +61,13 @@ describe('Classifiers', () => {
     expect(data).toHaveProperty('classId')
     expect(data).toHaveProperty('label')
     expect(data).toHaveProperty('confidence')
+  })
+
+  it('Should delete a classifier', async () => {
+    const { data, error } = await nk.classifiers.delete({
+      classifierId,
+    })
+
+    expect(error).toBe(null)
   })
 })

@@ -20,8 +20,32 @@ class ClassifiersService {
     return { data: data, error: null }
   }
 
+  public async getMany() {
+    const { data, error } = await this.api.getMany()
+    if(!data)
+      return { data: null, error: error }
+
+    return { data: data, error: null }
+  }
+
+  public async getOne(args: { classifierId: string }) {
+    const { classifierId } = args
+
+    if(!classifierId)
+      return { data: null, error: { message: 'Classifier ID is required' } }
+      
+    const { data, error } = await this.api.getOne(classifierId)
+    if(!data)
+      return { data: null, error: error }
+
+    return { data: data, error: null }
+  }
+
   public async train(args: { classifierId: string; label: any; context: string }) {
     const { classifierId, ...rest } = args
+
+    if(!classifierId)
+      return { data: null, error: { message: 'Classifier ID is required' } }
     
     const { data, error } = await this.api.train(classifierId, rest)
     if(!data)
@@ -32,8 +56,24 @@ class ClassifiersService {
 
   public async predict(args: { classifierId: string; context: string }) {
     const { classifierId, ...rest } = args
+
+    if(!classifierId)
+      return { data: null, error: { message: 'Classifier ID is required' } }
     
     const { data, error } = await this.api.predict(classifierId, rest)
+    if(!data)
+      return { data: null, error: error }
+
+    return { data: data, error: null }
+  }
+
+  public async delete(args: { classifierId: string}) {
+    const { classifierId } = args
+
+    if(!classifierId)
+      return { data: null, error: { message: 'Classifier ID is required' } }
+    
+    const { data, error } = await this.api.delete(classifierId)
     if(!data)
       return { data: null, error: error }
 

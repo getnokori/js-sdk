@@ -128,6 +128,8 @@ The same example could be leveraged for organizations that had a large document 
 
 nokori offers cloud-native programmable text classifiers that are breathlessly easy to use. Incrementally trainable in the cloud, you can train a classifier instantly and skip the infrastructure and training data management.
 
+Create a classifier:
+
 ```js
 const { data, error } = await nk.classifiers.create({
   name: 'Hot Dog Classifier',
@@ -135,6 +137,8 @@ const { data, error } = await nk.classifiers.create({
 
 // classifierId: nk.clfr.******************
 ```
+
+Incrementally train a classifier:
 
 ```js
 const { data, error } = await nk.classifiers.train({
@@ -144,6 +148,8 @@ const { data, error } = await nk.classifiers.train({
 })
 ```
 
+Predict with a classifier:
+
 ```js
 const { data, error } = await nk.classifiers.predict({
   classifierId: 'nk.clfr.******************',
@@ -152,5 +158,28 @@ const { data, error } = await nk.classifiers.predict({
 
 // label: 'hot dog'
 ```
+
+Get all classifiers:
+
+```js
+const { data, error } = await nk.classifiers.getMany()
+```
+
+Get one classifier:
+
+```js
+const { data, error } = await nk.classifiers.getOne({
+  classifierId: 'nk.clfr.******************',
+})
+```
+
+Delete a classifier:
+
+```js
+const { data, error } = await nk.classifiers.delete({
+  classifierId,
+})
+```
+
 
 Read the full [Classifier docs](https://docs.nokori.com/guides/classifiers/) for more.
