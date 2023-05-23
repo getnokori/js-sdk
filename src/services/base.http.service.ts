@@ -31,7 +31,7 @@ class BaseHTTP {
     // else if(apiToken.includes('_prod_'))
     //   this.baseURL = 'https://api.nokori.com/v1'
   
-    this.baseURL = 'http://localhost:4777/v1'
+    this.baseURL = 'https://api.nokori.com/v1'
   
   }
 
