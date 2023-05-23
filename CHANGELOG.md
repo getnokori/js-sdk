@@ -1,3 +1,10 @@
+### [1.2.2](https://github.com/getnokori/js-sdk/compare/v1.2.1...v1.2.2) (2023-05-23)
+
+
+### Bug Fixes
+
+* api endpoint ([bf21611](https://github.com/getnokori/js-sdk/commit/bf21611982b24b2c9cac0a1d4855caafb58a0e88))
+
 ### [1.2.1](https://github.com/getnokori/js-sdk/compare/v1.2.0...v1.2.1) (2023-05-22)
 
 
