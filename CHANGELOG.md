@@ -1,3 +1,10 @@
+### [1.2.3](https://github.com/getnokori/js-sdk/compare/v1.2.2...v1.2.3) (2023-05-29)
+
+
+### Features
+
+* adds hub prompts ([6aad7d1](https://github.com/getnokori/js-sdk/commit/6aad7d177d2c9a4a1ae175d9719e8f67a5c22468))
+
 ### [1.2.2](https://github.com/getnokori/js-sdk/compare/v1.2.1...v1.2.2) (2023-05-23)
 
 
