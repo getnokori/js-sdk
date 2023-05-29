@@ -9,12 +9,15 @@ class HubsHTTP {
   private httpService 
 
   constructor (HTTPService) {
-    this.httpService = HTTPService
+    this.httpService = HTTPService.repository
   }
 
-  public async query(args): Promise<HubsAPIResponse> {
+  public async prompt(args: {hubId: string; prompt: string; topN?: number}): Promise<HubsAPIResponse> {
     try{
-      const result = await this.httpService.get(`${this.resource}/`)
+      const body = { prompt: args.prompt }
+      if(args.topN) body['topN'] = args.topN
+
+      const result = await this.httpService.post(`${this.resource}/${args.hubId}/prompt`, body)
       if(result.status === 'error')
         return { data: null, error: result, statusCode: result.statusCode }
       

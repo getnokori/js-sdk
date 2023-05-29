@@ -1,18 +1,29 @@
+import HubsHTTP from '@/services/hubsHTTP.service'
+import type lolaAPIResponse from '@/types/lolaApiResponse.interface'
 
 class HubsService {
 
-  // public query(args: any): Promise<any> {
-  // try{
-  //   const result = await this.httpService.get(`${this.resource}`, args)
-  //   if(result.status === 'error')
-  //     return { data: null, error: result, statusCode: result.statusCode }
-      
-  //   return { data: result.data, error: null, statusCode: result.statusCode }
-  // }
-  // catch (error: any) {
-  //   return { data: null, error: error }
-  // }
-  // }
+  protected api: HubsHTTP
+
+  constructor(HTTPService, settings: any) {
+    this.api = new HubsHTTP(HTTPService)
+  }
+
+  public async prompt(args: {hubId: string; prompt: string; topN?: number}): Promise<lolaAPIResponse> {
+    try{
+      if(!args.hubId)
+        throw new Error('hubId is required')
+
+      const { data, error } = await this.api.prompt(args)
+      if(!data)
+        return { data: null, error: error }
+
+      return { data: data, error: null }
+    }
+    catch (error: any) {
+      return { data: null, error: error }
+    }
+  }
 }
 
 export default HubsService
