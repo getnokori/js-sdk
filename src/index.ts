@@ -8,6 +8,9 @@ import Auth from '@/services/auth/auth.service'
 import Hubs from '@/services/hubs.service'
 import Query from '@/services/query.service'
 import AIService from '@/services/ai/ai.service'
+import Mail from '@/services/mail/mail.service'
+
+import AuthEventsEnums from '@/enums/auth/authEvents.enum'
 
 export class nokori {
   public _apiToken: string
@@ -19,6 +22,7 @@ export class nokori {
   public http
   public ai: AIService
   public query: Query
+  public mail: Mail
 
   constructor (apiToken: string) {
     if(!apiToken) throw new Error('No token provided')
@@ -29,10 +33,11 @@ export class nokori {
     this.billing = new Billing(this.http, {})
     this.classifiers = new Classifiers(this.http, {})
     this.hubs = new Hubs(this.http, {})
+    this.mail = new Mail(this.http, {})
     this.payments = new Payments(this.http, {})
     this.ai = new AIService(this.http, {})
     
-    this.auth.on('LOGGED_IN', (session) => {
+    this.auth.on(AuthEventsEnums.LOGGED_IN, (session) => {
       if(!session?.accountId) return
       this.billing.setAccount(session.accountId)
       this.payments.setAccount(session.accountId)
