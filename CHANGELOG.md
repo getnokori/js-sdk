@@ -1,3 +1,10 @@
+### [1.3.2](https://github.com/getnokori/js-sdk/compare/v1.3.1...v1.3.2) (2023-06-19)
+
+
+### Bug Fixes
+
+* ToC layout ([8ac0188](https://github.com/getnokori/js-sdk/commit/8ac01886ce8078db7d6d912aea326ce773798567))
+
 ### [1.3.1](https://github.com/getnokori/js-sdk/compare/v1.3.0...v1.3.1) (2023-06-19)
 
 ## [1.3.0](https://github.com/getnokori/js-sdk/compare/v1.2.3...v1.3.0) (2023-06-19)
