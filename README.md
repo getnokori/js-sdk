@@ -10,11 +10,9 @@ For a full run-down of the nokori platform, check out the [documentation](https:
 
 ## Table of Contents
 
-• [Hubs](#hubs-powered-components)
-
-• [Mail](#nokori-mail)
-
-• [AI](#nokori-ai)
+- [Hubs](#hubs-powered-components)
+- [Mail](#nokori-mail)
+- [AI](#nokori-ai)
 
 ## Hubs Code Examples
 
