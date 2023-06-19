@@ -1,3 +1,11 @@
+## [1.3.0](https://github.com/getnokori/js-sdk/compare/v1.2.3...v1.3.0) (2023-06-19)
+
+
+### Features
+
+* adds mail ([de74d88](https://github.com/getnokori/js-sdk/commit/de74d8831b29adb168cbf8f8ab60675d1a5a1065))
+* adds mail ([a1f8d98](https://github.com/getnokori/js-sdk/commit/a1f8d98da3188fac7e452b3a5cb450cb025b0ee7))
+
 ### [1.2.3](https://github.com/getnokori/js-sdk/compare/v1.2.2...v1.2.3) (2023-05-29)
 
 
