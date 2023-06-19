@@ -1,5 +1,5 @@
 import nokori from '../../index'
-const nk = new nokori('nk_pk_prod_BM4sueHCP8fLLhFFOiaCkuuREgZUEpAXlyYP')
+const nk = new nokori(process.env.NOKORI_API_KEY)
 
 describe('nokori Auth', () => {
   it('should validate user account with token', async () => {

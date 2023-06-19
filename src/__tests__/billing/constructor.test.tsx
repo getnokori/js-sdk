@@ -1,5 +1,5 @@
 import nokori from '../../index'
-const nk = new nokori('lola_pk_prod_YDzGnSnlLt2xnrnXedJ3hjXOWbWzjQAcbtOc')
+const nk = new nokori(process.env.NOKORI_API_KEY)
 
 describe('nokori Billing', () => {
   it('should construct correctly', async () => {

@@ -15,7 +15,7 @@ class MailHTTP {
 
   public async send(args: SendMailRequestDTO) {
     try {
-      const url = `${this.mailResource}`
+      const url = `${this.mailResource}/send`
       const result = await this.httpService.post(url, args)
       if(result.status === 'error')
         return { data: null, error: result, statusCode: result.statusCode }

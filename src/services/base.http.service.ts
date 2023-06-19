@@ -25,13 +25,11 @@ class BaseHTTP {
   }
 
   private _setAPIUrl(apiToken){
-    // if(apiToken.includes('_test_'))
-    //   this.baseURL = 'https://api.qa.nokori.com/v1'
+    if(process.env.API_ENDPOINT)
+      this.baseURL = process.env.API_ENDPOINT
     
-    // else if(apiToken.includes('_prod_'))
-    //   this.baseURL = 'https://api.nokori.com/v1'
-  
-    this.baseURL = 'https://api.nokori.com/v1'
+    else
+      this.baseURL = 'https://api.nokori.com/v1'
   
   }
 

@@ -1,5 +1,5 @@
 import nokori from '../../index'
-const nk = new nokori('lola_pk_test_TAKPkYzqUdhu3gg-weJe0P2hm8Jcg2RPXXkg')
+const nk = new nokori(process.env.NOKORI_API_KEY)
 
 import 'jest-localstorage-mock'
 import StorageEnums from '../../enums/storage/storage.enum'
@@ -16,6 +16,8 @@ describe('nokori Auth', () => {
     expect(data).toHaveProperty('redirectTo')
 
     const session = data.session
+
+    console.log(data)
 
     expect(data).toBeTruthy()
     expect(session?.accountId).toBeTruthy()

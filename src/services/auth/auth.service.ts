@@ -54,9 +54,8 @@ class AuthService {
     this._recoverAndRefresh()
   }
 
-  public async signup(args: any) {
+  public async signup(args: { email: string; password: string; firstName?: string; lastName?: string }) {
     const { data, error } = await this.api.signup(args)
-    console.log(data, error)
     if(!data)
       return { data: null, error: error }
 

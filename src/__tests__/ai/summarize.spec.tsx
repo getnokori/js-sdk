@@ -2,7 +2,7 @@
 import 'jest-localstorage-mock'
 
 import nokori from '../../index'
-const nk = new nokori('lola_pk_prod_k-GfKj0FDn-YVHVC1opWopH1RGm-GTWuezuC')
+const nk = new nokori(process.env.NOKORI_API_KEY)
 
 describe('AI Summarization', () => {
 

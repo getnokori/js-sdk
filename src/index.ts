@@ -1,4 +1,5 @@
 'strict'
+import 'dotenv/config'
 
 import HTTPService from '@/services/base.http.service'
 import Billing from '@/services/billing/billing.service'
