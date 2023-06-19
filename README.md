@@ -8,9 +8,13 @@ nokori is the Programmable Intelligence platform providing the tools and infrast
 
 For a full run-down of the nokori platform, check out the [documentation](https://docs.nokori.com).
 
-## nokori Docs
+## Table of Contents
 
-You can always reference the [nokori Developer Docs](https://docs.nokori.com/?utm_source=github&utm_medium=js-framework-examples&utm_campaign=home) for more information.
+• [Hubs](#hubs-powered-components)
+
+• [Mail](#nokori-mail)
+
+• [AI](#nokori-ai)
 
 ## Hubs Code Examples
 
@@ -25,9 +29,7 @@ Checkout basic Hubs code examples for popular JS frameworks:
 
 nokori makes it near effortless to add any database or API operation to your components without servers, APIs, or infrastructure to manage.
 
-Because nokori is cloud-native, queries are managed centrally as Special Purpose Cloud Functions™ in the nokori UI. T
-
-his uniquely allows you to keep your data operations close to your template logic without sacrificing code maintainability or reusability.
+Because nokori is cloud-native, Configure, test, and deploy your API & Database connections all in one place.
 
 #### Basic Component Example
 
@@ -82,6 +84,22 @@ const {data, error} = await nk.query.execute({
   } 
 })
 ```
+
+## nokori Mail
+
+Application developers can leverage the power of nokori Mail to send transactional emails, newsletters, and more.
+
+```js
+const {data, error} = await nk.query.mail({
+  templateId: 'send-password-reset',
+  settings: {
+    to: 'user@website.com',
+  } 
+})
+```
+
+Templates are easily managable within the nokori UI.
+
 
 ## nokori AI
 
