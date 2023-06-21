@@ -1,3 +1,10 @@
+### [1.3.3](https://github.com/getnokori/js-sdk/compare/v1.3.2...v1.3.3) (2023-06-21)
+
+
+### Bug Fixes
+
+* process undefined ([7af96c9](https://github.com/getnokori/js-sdk/commit/7af96c90d29f9997826cd750c24296b6ae49fe6e))
+
 ### [1.3.2](https://github.com/getnokori/js-sdk/compare/v1.3.1...v1.3.2) (2023-06-19)
 
 
