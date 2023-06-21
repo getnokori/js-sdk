@@ -1,6 +1,6 @@
 {
   "name": "@nokori/js-sdk",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "nokori Node.JS js/ts sdk",
   "type": "module",
   "files": [
