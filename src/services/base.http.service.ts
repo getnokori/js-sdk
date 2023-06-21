@@ -25,11 +25,7 @@ class BaseHTTP {
   }
 
   private _setAPIUrl(apiToken){
-    if(typeof process !== 'undefined' && process.env && process.env.API_ENDPOINT)
-      this.baseURL = process.env.API_ENDPOINT
-    
-    else
-      this.baseURL = 'https://api.nokori.com/v1'
+    this.baseURL = 'https://api.nokori.com/v1'
   
   }
 
