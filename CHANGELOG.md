@@ -1,3 +1,10 @@
+### [1.3.7](https://github.com/getnokori/js-sdk/compare/v1.3.6...v1.3.7) (2023-06-21)
+
+
+### Bug Fixes
+
+* remove process.env ([13c36cd](https://github.com/getnokori/js-sdk/commit/13c36cd75ec4e2811986f8cf650eec76b3054ddf))
+
 ### [1.3.6](https://github.com/getnokori/js-sdk/compare/v1.3.5...v1.3.6) (2023-06-21)
 
 ### [1.3.5](https://github.com/getnokori/js-sdk/compare/v1.3.4...v1.3.5) (2023-06-21)
