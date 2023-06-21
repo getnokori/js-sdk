@@ -24,10 +24,10 @@ export class nokori {
   public query: Query
   public mail: Mail
 
-  constructor (apiToken: string) {
+  constructor (apiToken: string, options?: { apiURL?: string }) {
     if(!apiToken) throw new Error('No token provided')
     this._apiToken = apiToken
-    this.http = new HTTPService(this._apiToken)
+    this.http = new HTTPService(this._apiToken, options)
 
     this.auth = new Auth(this.http, { autoRefreshSession: true })
     this.billing = new Billing(this.http, {})

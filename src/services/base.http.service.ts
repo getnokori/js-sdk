@@ -10,9 +10,9 @@ class BaseHTTP {
   protected bearerToken: string | null = null
   protected storage = new StorageService()
 
-  constructor(apiToken: string) {
+  constructor(apiToken: string, options?: { apiURL?: string }) {
     this.apiToken = apiToken
-    this._setAPIUrl(apiToken)
+    this._setAPIUrl(options?.apiURL)
     this.repository = axios.create({
       baseURL: this.baseURL,
       headers: {
@@ -24,8 +24,12 @@ class BaseHTTP {
     this.init()
   }
 
-  private _setAPIUrl(apiToken){
-    this.baseURL = 'https://api.nokori.com/v1'
+  private _setAPIUrl(apiURL?: string) {
+    if(apiURL)
+      this.baseURL = apiURL
+    
+    else
+      this.baseURL = 'https://api.nokori.com/v1'
   
   }
 
