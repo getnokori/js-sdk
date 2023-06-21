@@ -25,7 +25,7 @@ class BaseHTTP {
   }
 
   private _setAPIUrl(apiToken){
-    if(process.env.API_ENDPOINT)
+    if(typeof process !== 'undefined' && process.env && process.env.API_ENDPOINT)
       this.baseURL = process.env.API_ENDPOINT
     
     else
