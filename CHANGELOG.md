@@ -1,3 +1,10 @@
+### [1.3.8](https://github.com/getnokori/js-sdk/compare/v1.3.7...v1.3.8) (2023-06-21)
+
+
+### Features
+
+* add options to constructor ([1dc5387](https://github.com/getnokori/js-sdk/commit/1dc5387c6e108231cd781fc357c8615ab21c5ae8))
+
 ### [1.3.7](https://github.com/getnokori/js-sdk/compare/v1.3.6...v1.3.7) (2023-06-21)
 
 
