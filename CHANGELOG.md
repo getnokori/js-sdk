@@ -1,3 +1,5 @@
+### [1.3.10](https://github.com/getnokori/js-sdk/compare/v1.3.9...v1.3.10) (2023-06-26)
+
 ### [1.3.9](https://github.com/getnokori/js-sdk/compare/v1.3.8...v1.3.9) (2023-06-21)
 
 ### [1.3.8](https://github.com/getnokori/js-sdk/compare/v1.3.7...v1.3.8) (2023-06-21)
