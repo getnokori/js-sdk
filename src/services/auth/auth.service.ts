@@ -62,7 +62,7 @@ class AuthService {
     return { data: data, error: null }
   }
 
-  public async verifyUser(args: any){
+  public async verifyUser(args: {verifyToken: string}){
     const { data, error } = await this.api.verifyUser(args)
     if(!data)
       return { data: null, error: error }

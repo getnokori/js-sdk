@@ -1,7 +1,7 @@
-interface lolaAPIResponse {
+interface nkAPIResponse {
   data: any | null
   error: Error | null 
   statusCode?: number | null 
 }
 
-export default lolaAPIResponse
+export default nkAPIResponse

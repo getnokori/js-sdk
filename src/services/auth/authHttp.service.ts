@@ -1,4 +1,4 @@
-import type lolaAPIResponse from '@/types/lolaApiResponse.interface'
+import type nkAPIResponse from '@/types/nkApiResponse.interface'
 
 class AuthHTTP {
   private resource = '/auth'
@@ -15,7 +15,7 @@ class AuthHTTP {
     return true
   }
 
-  public async signup(args: any): Promise<lolaAPIResponse> {
+  public async signup(args: any): Promise<nkAPIResponse> {
     try {
       const result = await this.httpService.post(`${this.resource}/signup`, args)
       if(result.status === 'error')
@@ -28,7 +28,7 @@ class AuthHTTP {
     }
   }
 
-  public async verifyUser(args: any): Promise<lolaAPIResponse> {
+  public async verifyUser(args: {verifyToken: string}): Promise<nkAPIResponse> {
     try {
       const result = await this.httpService.get(`${this.resource}/verify/${args.verifyToken}`)
       if(result.status === 'error')
@@ -41,7 +41,7 @@ class AuthHTTP {
     }
   }
 
-  public async resendVerificationEmail(args: any): Promise<lolaAPIResponse> {
+  public async resendVerificationEmail(args: any): Promise<nkAPIResponse> {
     try {
       const result = await this.httpService.put(`${this.resource}/verify/resend/${args.verifyRequestToken}`)
       if(result.status === 'error')
@@ -54,7 +54,7 @@ class AuthHTTP {
     }
   }
 
-  public async login(args: any): Promise<lolaAPIResponse> {
+  public async login(args: any): Promise<nkAPIResponse> {
     try{
       const result = await this.httpService.post(`${this.resource}/login`, args)
       if(result.status === 'error')
@@ -67,7 +67,7 @@ class AuthHTTP {
     }
   }
 
-  public async logout(token: string): Promise<lolaAPIResponse> {
+  public async logout(token: string): Promise<nkAPIResponse> {
     try{
       const result = await this.httpService.get(`${this.resource}/logout?token=${token}`)
       if(result.status === 'error')
@@ -81,7 +81,7 @@ class AuthHTTP {
 
   }
 
-  public async requestPasswordReset(args: any): Promise<lolaAPIResponse> {
+  public async requestPasswordReset(args: any): Promise<nkAPIResponse> {
     try{
       const result = await this.httpService.post(`${this.resource}/password-reset-request`, args)
       if(result.status === 'error')
@@ -94,9 +94,10 @@ class AuthHTTP {
     }
   }
 
-  public async resetPassword(args: any): Promise<lolaAPIResponse> {
+  public async resetPassword(args: {token: string; password: string}): Promise<nkAPIResponse> {
     try{
-      const result = await this.httpService.post(`${this.resource}/password-reset`, args)
+      const { token, password } = args
+      const result = await this.httpService.post(`${this.resource}/password-reset?token=${token}`, { password })
       if(result.status === 'error')
         return { data: null, error: result, statusCode: result.statusCode }
       
@@ -107,24 +108,8 @@ class AuthHTTP {
     }
   }
 
-  public async changePassword({ oldPassword, newPassword }): Promise<lolaAPIResponse> {
-    try{
-      const result = this.httpService.put(`${this.resource}/password-change`, {
-        oldPassword,
-        newPassword,
-      })
-      if(result.status === 'error')
-        return { data: null, error: result, statusCode: result.statusCode }
-
-      return { data: result.data, error: null, statusCode: result.statusCode }
-    }
-    catch (error: any) {
-      return { data: null, error: error }
-    }
-  }
-
   // TODO Implement /user in api-core
-  public async getUser(userId: string): Promise<lolaAPIResponse> {
+  public async getUser(userId: string): Promise<nkAPIResponse> {
     try{
       const result = await this.httpService.get(`${this.resource}/users/${userId}`)
       if(result.status === 'error')
@@ -137,7 +122,7 @@ class AuthHTTP {
     }
   }
 
-  public async refreshSession(token: string): Promise<lolaAPIResponse> {
+  public async refreshSession(token: string): Promise<nkAPIResponse> {
     try{
       const result = await this.httpService.get(`${this.resource}/refresh?token=${token}`)
       if(result.status === 'error')

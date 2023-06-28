@@ -1,5 +1,5 @@
 import HubsHTTP from '@/services/hubsHTTP.service'
-import type lolaAPIResponse from '@/types/lolaApiResponse.interface'
+import type lolaAPIResponse from '@/types/nkApiResponse.interface'
 
 class HubsService {
 

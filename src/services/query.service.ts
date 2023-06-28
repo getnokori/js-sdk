@@ -1,5 +1,5 @@
 import QueryHTTP from '@/services/queryHttp.service'
-import type lolaAPIResponse from '@/types/lolaApiResponse.interface'
+import type lolaAPIResponse from '@/types/nkApiResponse.interface'
 
 class Query {
 

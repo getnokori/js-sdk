@@ -1,4 +1,4 @@
-import type AuthAPIResponse from '@/types/lolaApiResponse.interface'
+import type AuthAPIResponse from '@/types/nkApiResponse.interface'
 
 class QueryHTTP {
   private resource = '/queries'
