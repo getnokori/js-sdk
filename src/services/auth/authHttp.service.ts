@@ -124,7 +124,7 @@ class AuthHTTP {
 
   public async refreshSession(token: string): Promise<nkAPIResponse> {
     try{
-      const result = await this.httpService.get(`${this.resource}/refresh?token=${token}`)
+      const result = await this.httpService.get(`${this.resource}/sessions/refresh?token=${token}`)
       if(result.status === 'error')
         return { data: null, error: result, statusCode: result.statusCode }
       
