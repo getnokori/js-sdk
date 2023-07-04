@@ -1,3 +1,10 @@
+### [1.3.13](https://github.com/getnokori/js-sdk/compare/v1.3.12...v1.3.13) (2023-07-04)
+
+
+### Features
+
+* add new auth funcs ([c297d4b](https://github.com/getnokori/js-sdk/commit/c297d4b5c6eb05544230b0a335b53d4f84a8c414))
+
 ### [1.3.12](https://github.com/getnokori/js-sdk/compare/v1.3.11...v1.3.12) (2023-07-03)
 
 ### [1.3.11](https://github.com/getnokori/js-sdk/compare/v1.3.10...v1.3.11) (2023-06-28)
