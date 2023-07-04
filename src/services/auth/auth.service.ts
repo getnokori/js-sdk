@@ -118,7 +118,7 @@ class AuthService {
     return result
   }
 
-  public async changePassword(args: { password: string; userId: string; token: string }){
+  public async changePassword(args: { password: string; token: string }){
     const { data, error } = await this.api.changePassword(args)
     if(!data)
       return { data: null, error: error }

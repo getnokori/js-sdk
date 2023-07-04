@@ -69,10 +69,10 @@ class AuthHTTP {
 
   }
 
-  public async changePassword(args: { password: string; userId: string; token: string }): Promise<nkAPIResponse> {
+  public async changePassword(args: { password: string; token: string }): Promise<nkAPIResponse> {
     try {
-      const { password, userId, token } = args
-      const result = await this.httpService.put(`${this.resource}/users/${userId}/password?token=${token}`, { password })
+      const { password, token } = args
+      const result = await this.httpService.put(`${this.resource}/users/password?token=${token}`, { password })
       if(result.status === 'error')
         return { data: null, error: result, statusCode: result.statusCode }
         
