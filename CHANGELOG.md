@@ -1,3 +1,10 @@
+### [1.3.14](https://github.com/getnokori/js-sdk/compare/v1.3.13...v1.3.14) (2023-07-04)
+
+
+### Bug Fixes
+
+* enum include path ([4b26231](https://github.com/getnokori/js-sdk/commit/4b2623169db7f6b57054a9b14c8d2858928eabdf))
+
 ### [1.3.13](https://github.com/getnokori/js-sdk/compare/v1.3.12...v1.3.13) (2023-07-04)
 
 
