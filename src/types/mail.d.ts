@@ -1,4 +1,4 @@
-import type MailScenarios from '@/enums/MailScenarios'
+import type MailScenarios from '@/enums/mail/MailScenarios'
 
 export interface SendMailRequestDTO {
   scenario?: MailScenarios
