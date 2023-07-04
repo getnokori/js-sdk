@@ -54,7 +54,7 @@ class AuthService {
     this._recoverAndRefresh()
   }
 
-  public async signup(args: { email: string; password: string; firstName?: string; lastName?: string }) {
+  public async signup(args: { email: string; password?: string; firstName?: string; lastName?: string; autoVerify?: boolean }) {
     const { data, error } = await this.api.signup(args)
     if(!data)
       return { data: null, error: error }
@@ -64,14 +64,6 @@ class AuthService {
 
   public async verifyUser(args: {verifyToken: string}){
     const { data, error } = await this.api.verifyUser(args)
-    if(!data)
-      return { data: null, error: error }
-
-    return { data: data, error: null }
-  }
-
-  public async resendVerificationEmail(args: any){
-    const { data, error } = await this.api.resendVerificationEmail(args)
     if(!data)
       return { data: null, error: error }
 
@@ -126,16 +118,16 @@ class AuthService {
     return result
   }
 
-  public async requestPasswordReset(args: any){
-    const { data, error } = await this.api.requestPasswordReset(args)
+  public async changePassword(args: { password: string; userId: string; token: string }){
+    const { data, error } = await this.api.changePassword(args)
     if(!data)
       return { data: null, error: error }
 
     return { data: data, error: null }
   }
 
-  public async resetPassword(args: any){
-    const { data, error } = await this.api.resetPassword(args)
+  public async setPassword(args: { password: string; userId: string }){
+    const { data, error } = await this.api.setPassword(args)
     if(!data)
       return { data: null, error: error }
 
@@ -173,6 +165,19 @@ class AuthService {
         return this.inauthenticatedResponse
       
       const { data, error } = await this.api.getUser(this.user.userId)
+      if(!data)
+        return { data: null, error: error }
+      
+      return { data: data, error: null }
+    }
+    catch (error) {
+      return { data: null, error: error }
+    }
+  }
+
+  async getUsers() {
+    try {     
+      const { data, error } = await this.api.getUsers()
       if(!data)
         return { data: null, error: error }
       

@@ -1,3 +1,4 @@
+import type IUserDTO from '@/types/auth.type'
 import type nkAPIResponse from '@/types/nkApiResponse.interface'
 
 class AuthHTTP {
@@ -15,7 +16,7 @@ class AuthHTTP {
     return true
   }
 
-  public async signup(args: any): Promise<nkAPIResponse> {
+  public async signup(args: IUserDTO): Promise<nkAPIResponse> {
     try {
       const result = await this.httpService.post(`${this.resource}/signup`, args)
       if(result.status === 'error')
@@ -31,19 +32,6 @@ class AuthHTTP {
   public async verifyUser(args: {verifyToken: string}): Promise<nkAPIResponse> {
     try {
       const result = await this.httpService.get(`${this.resource}/verify/${args.verifyToken}`)
-      if(result.status === 'error')
-        return { data: null, error: result, statusCode: result.statusCode }
-      
-      return { data: result.data, error: null, statusCode: result.statusCode }
-    }
-    catch (error: any) {
-      return { data: null, error: error }
-    }
-  }
-
-  public async resendVerificationEmail(args: any): Promise<nkAPIResponse> {
-    try {
-      const result = await this.httpService.put(`${this.resource}/verify/resend/${args.verifyRequestToken}`)
       if(result.status === 'error')
         return { data: null, error: result, statusCode: result.statusCode }
       
@@ -81,12 +69,13 @@ class AuthHTTP {
 
   }
 
-  public async requestPasswordReset(args: any): Promise<nkAPIResponse> {
-    try{
-      const result = await this.httpService.post(`${this.resource}/password-reset-request`, args)
+  public async changePassword(args: { password: string; userId: string; token: string }): Promise<nkAPIResponse> {
+    try {
+      const { password, userId, token } = args
+      const result = await this.httpService.put(`${this.resource}/users/${userId}/password?token=${token}`, { password })
       if(result.status === 'error')
         return { data: null, error: result, statusCode: result.statusCode }
-      
+        
       return { data: result.data, error: null, statusCode: result.statusCode }
     }
     catch (error: any) {
@@ -94,13 +83,13 @@ class AuthHTTP {
     }
   }
 
-  public async resetPassword(args: {token: string; password: string}): Promise<nkAPIResponse> {
-    try{
-      const { token, password } = args
-      const result = await this.httpService.post(`${this.resource}/password-reset?token=${token}`, { password })
+  public async setPassword(args: { password: string; userId: string }): Promise<nkAPIResponse> {
+    try {
+      const { password, userId } = args
+      const result = await this.httpService.post(`${this.resource}/users/${userId}/password`, { password })
       if(result.status === 'error')
         return { data: null, error: result, statusCode: result.statusCode }
-      
+        
       return { data: result.data, error: null, statusCode: result.statusCode }
     }
     catch (error: any) {
@@ -112,6 +101,32 @@ class AuthHTTP {
   public async getUser(userId: string): Promise<nkAPIResponse> {
     try{
       const result = await this.httpService.get(`${this.resource}/users/${userId}`)
+      if(result.status === 'error')
+        return { data: null, error: result, statusCode: result.statusCode }
+      
+      return { data: result.data, error: null, statusCode: result.statusCode }
+    }
+    catch (error: any) {
+      return { data: null, error: error }
+    }
+  }
+
+  public async getUsers(): Promise<nkAPIResponse> {
+    try{
+      const result = await this.httpService.get(`${this.resource}/users`)
+      if(result.status === 'error')
+        return { data: null, error: result, statusCode: result.statusCode }
+      
+      return { data: result.data, error: null, statusCode: result.statusCode }
+    }
+    catch (error: any) {
+      return { data: null, error: error }
+    }
+  }
+
+  public async getSession(args: {sessionKey: string}): Promise<nkAPIResponse> {
+    try{
+      const result = await this.httpService.get(`${this.resource}/sessions/${args.sessionKey}`)
       if(result.status === 'error')
         return { data: null, error: result, statusCode: result.statusCode }
       

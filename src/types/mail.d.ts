@@ -1,4 +1,7 @@
+import type MailScenarios from '@/enums/MailScenarios'
+
 export interface SendMailRequestDTO {
+  scenario?: MailScenarios
   templateId: string
   settings: {
     to: string
