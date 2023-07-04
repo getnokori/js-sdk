@@ -1,3 +1,10 @@
+### [1.3.15](https://github.com/getnokori/js-sdk/compare/v1.3.14...v1.3.15) (2023-07-04)
+
+
+### Bug Fixes
+
+* type definition ([b380672](https://github.com/getnokori/js-sdk/commit/b38067211b882ba25aa1353ae4597fc4c0d1f2b3))
+
 ### [1.3.14](https://github.com/getnokori/js-sdk/compare/v1.3.13...v1.3.14) (2023-07-04)
 
 
