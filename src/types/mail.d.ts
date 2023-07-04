@@ -1,7 +1,5 @@
-import type MailScenarios from '@/enums/mail/MailScenarios'
-
 export interface SendMailRequestDTO {
-  scenario?: MailScenarios
+  scenario?: 'verify-email' | 'reset-password'
   templateId: string
   settings: {
     to: string
