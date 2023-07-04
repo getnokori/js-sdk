@@ -1,3 +1,10 @@
+### [1.3.16](https://github.com/getnokori/js-sdk/compare/v1.3.15...v1.3.16) (2023-07-04)
+
+
+### Bug Fixes
+
+* change password ([c03437d](https://github.com/getnokori/js-sdk/commit/c03437d6be1dd6fe404b324235cbd90781ae68ac))
+
 ### [1.3.15](https://github.com/getnokori/js-sdk/compare/v1.3.14...v1.3.15) (2023-07-04)
 
 
